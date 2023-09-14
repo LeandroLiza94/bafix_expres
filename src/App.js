@@ -6,6 +6,7 @@ import  Switch  from 'react-switch';
 import Login from './router/Login';
 import Inicio from './router/Inicio';
 import AcercaDe from './router/AcercaDe';
+import Buscar from './router/Buscar';
 import Registrarse from './components/Registrarse'
 
 function App() {
@@ -27,7 +28,12 @@ function App() {
     {
       path:'/Registrarse',
       element: <Registrarse/>
-    }
+    },
+    {
+      path:'/Buscar/:especialidad',
+      element: <Buscar/>
+      
+    },
   ]);
 
   return (
