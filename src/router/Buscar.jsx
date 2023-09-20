@@ -102,7 +102,7 @@ export function List() {
       person.profession === especialidad
     );
     const cargarprofesionales = async() =>{
-      const respuesta = await fetch('https://testbackend-9g7x.onrender.com:3000/profesionales')
+      const respuesta = await fetch('https://testbackend-9g7x.onrender.com/profesionales')
       const data = await respuesta.json()
       console.log(data)
     }
