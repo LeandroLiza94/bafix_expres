@@ -154,7 +154,7 @@ export function List() {
   }, {
     id: 1,
     name: 'Mario José Molina-Pasquel Henríquez',
-    profession: 'químico',
+    profession: 'Plomero',
     accomplishment: 'el descubrimiento del agujero de ozono en el Ártico',
     imageId: 'mynHUSa'
   }, {
