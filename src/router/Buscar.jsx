@@ -4,7 +4,7 @@ import  '../assetss/css/Buscar.css';
 import Navegador from '../components/Navegador';
 import { useParams  } from 'react-router-dom'
 import {Container,Row,Col,Button,Form} from 'react-bootstrap'
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate  } from 'react-router-dom';
 import { redirect } from "react-router-dom";
 
@@ -101,6 +101,14 @@ export function List() {
     const chemists = people.filter(person =>
       person.profession === especialidad
     );
+    const cargarprofesionales = async() =>{
+      const respuesta = await fetch('https://testbackend-9g7x.onrender.com:3000/profesionales')
+      const data = await respuesta.json()
+      console.log(data)
+    }
+    useEffect(()=>{
+      cargarprofesionales()
+    },[])
     //console.log("asdad")
     const listItems = chemists.map(person =>
       <li>
