@@ -10,17 +10,17 @@ class Navegador extends React.Component {
 
 
 
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                    <Link to={"/"} class="nav-link active">Inicio</Link>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                    <div className="container-fluid">
+                    <Link to={"/"} className="nav-link active">Inicio</Link>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <Link to={"/"} class="nav-link active">Inicio</Link>
-                                <Link to={"/Ingresar"} class="nav-link">Ingresar </Link>
-                                <Link to={"/AcercaDe"} class="nav-link">Acerca De </Link>
+                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div className="navbar-nav">
+                                <Link to={"/"} className="nav-link active">Inicio</Link>
+                                <Link to={"/Ingresar"} className="nav-link">Ingresar </Link>
+                                <Link to={"/AcercaDe"} className="nav-link">Acerca De </Link>
 
                             </div>
                         </div>
