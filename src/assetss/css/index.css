@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+<<<<<<< Updated upstream
 .picture {  
   width: 150px;
   height: 150px;  
@@ -39,4 +40,9 @@ code {
   border-style: solid;
   height: 500px;
   margin-top: 100px;
+=======
+.logobfix{
+  width: 30px;
+  height: 30px; 
+>>>>>>> Stashed changes
 }
