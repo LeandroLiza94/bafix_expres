@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
 
+//local
 axios.defaults.baseURL = 'http://localhost:8080';
+//host
+//axios.defaults.baseURL = 'https://testbackend-9g7x.onrender.com';
 axios.defaults.headers.post["Content-Type"] = 'application/json'
 //axios.defaults.headers.common['Authorization']=''
 

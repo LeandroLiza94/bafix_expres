@@ -10,7 +10,8 @@ import Registrarse from './components/Registrarse';
 import WelcomeContent from './components/WelcomeContent';
 import NavVerticalP from './router/NavVerticalP';
 import AuthContent from './components/AuthContent';
-
+import ProfesionalDet from './router/ProfesionalDet';
+import Buscar from './router/Buscar';
 function App() {
 
 /*const router = createBrowserRouter([
@@ -60,6 +61,8 @@ function App() {
       <Route path = "/AcercaDe" element = {<AcercaDe/>} />
       <Route path = "/Registrarse" element = {<Registrarse/>} />
       <Route path = "/mensajes" element = {<AuthContent/>} />
+      <Route path = "/Buscar/:profesion" element = {<Buscar/>} />
+      <Route path = "/Profesional/:idProfesional" element = {<ProfesionalDet/>} />
       <Route path = "/NavPro" element = {<NavVerticalP/>} />
           <Route
             path="/error-page"
