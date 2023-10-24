@@ -24,6 +24,18 @@ export const cleanAuthToken = () => {
 
 }
 
+export const setIdProfesional = (idProfesional) => {
+  window.localStorage.setItem("id_Profesional", idProfesional);
+}
+
+
+export const getIdProfesional = () => {
+  return window.localStorage.getItem("id_Profesional");
+}
+
+
+
+
 
 export const request = ( method, url, data)=>{
     let headers = {};
