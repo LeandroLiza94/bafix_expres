@@ -12,7 +12,7 @@ class Salir extends React.Component{
         return(
             <React.Fragment>
                 <Link to={"/Ingresar"} className="nav-link">
-                    <button type="submit" className="btn btn-dark"  onClick={this.logout}>Salir</button>
+                    <button type="submit" class="btn btn-dark" onClick={this.logout}>Salir</button>
                 </Link>
 
 

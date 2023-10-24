@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { request, setAuthtoken, setIdProfesional } from '../axios_helper';
+import { request, setAuthtoken } from '../axios_helper';
 import { Link, Navigate } from 'react-router-dom';
 import Salir from './Salir';
 
@@ -46,11 +46,12 @@ class Profesional extends React.Component {
                 ubicacion: this.state.ubicacion
             }
            
-        ).then((response) => {
-            setIdProfesional(response.data.idProfesional);
-            this.setState({ componentToShow: "profesionalCreado" })
+        ).then((response) =>{
+                this.setState({componentToShow: "bienvenido"})
+            
+            setAuthtoken(response.data.token);
         }).catch((error) => {
-            this.setState({ componentToShow: "bienvenido" })
+            this.setState({componentToShow: "bienvenido"})
         });
     }
 
@@ -58,48 +59,43 @@ class Profesional extends React.Component {
     render(){
         return(
             <React.Fragment>
+    
 
-                {this.state.componentToShow === "profesionalCreado" && <Navigate to="/ProfesionalCreado" />}
                 <Salir/>
-                <div>
-                    
+                
                 <form onSubmit={this.onSubmitProfesional} >
                     <div className='container'>
                         <div className='row'>
-                            <div className='col-md-15 offset-md-10 border rounde p-4 mt-2 shadow'>
-                                <div className="mb-4">
+                            <div className='col-md-8 offset-md-3 border rounde p-4 mt-2 shadow'>
+                                <div className="mb-3">
                                     <label htmlFor="nombre" className="form-label">Nombre</label>
                                     <input type="text" className="form-control" id="nombre" placeholder="Nombre" name="nombre" onChange={this.onChangeHandler} />
                                 </div>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label for="formGroupExampleInput2" className="form-label">Apellido</label>
-                                    <input type="text" className="form-control" id="apellido" placeholder="Apellido" name="apellido"  onChange={this.onChangeHandler}  />
+                                    <input type="text" className="form-control" id="apellido" name="apellido"  onChange={this.onChangeHandler}  />
                                 </div>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label for="formGroupExampleInput" className="form-label">DNI</label>
-                                    <br/>
                                     <input type="text" className="form-control" id="documento" placeholder="Documento" name="dni" onChange={this.onChangeHandler} />
                                 </div>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label for="formGroupExampleInput2" className="form-label">Mail</label>
-                                    <br/>
                                     <input type="text" className="form-control" id="mail" placeholder="Mail" name="mail" onChange={this.onChangeHandler} />
                                 </div>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label for="formGroupExampleInput" className="form-label">Telefono</label>
                                     <input type="text" className="form-control" id="telefono" placeholder="Telefono" name="telefono" onChange={this.onChangeHandler} />
                                 </div>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label for="formGroupExampleInput2" className="form-label">Foto</label>
-                                    <br/>
                                     <input type="text" className="form-control" id="foto" placeholder="Foto" name="foto" onChange={this.onChangeHandler} />
                                 </div>
                                 <div className="input-group">
                                     <span className="input-group-text">Experiencia</span>
                                     <textarea className="form-control" aria-label="With textarea" name="experiencia" onChange={this.onChangeHandler}></textarea>
                                 </div>
-                                <br/>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label for="formGroupExampleInput2" className="form-label">Ubicacion</label>
                                     <input type="text" className="form-control" id="ubicacion" name="ubicacion" placeholder="Ubicacion" onChange={this.onChangeHandler} />
                                 </div>
@@ -108,7 +104,6 @@ class Profesional extends React.Component {
                         </div>
                     </div>
                 </form>
-            </div>
 
 
             </React.Fragment>
