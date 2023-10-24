@@ -12,6 +12,9 @@ import NavVerticalP from './router/NavVerticalP';
 import AuthContent from './components/AuthContent';
 import ProfesionalDet from './router/ProfesionalDet';
 import Buscar from './router/Buscar';
+import ProfesionalCreado from './components/ProfesionalCreado';
+
+
 function App() {
 
 /*const router = createBrowserRouter([
@@ -64,6 +67,8 @@ function App() {
       <Route path = "/Buscar/:profesion" element = {<Buscar/>} />
       <Route path = "/Profesional/:idProfesional" element = {<ProfesionalDet/>} />
       <Route path = "/NavPro" element = {<NavVerticalP/>} />
+      <Route path="/ProfesionalCreado" element={<ProfesionalCreado />} />
+      
           <Route
             path="/error-page"
             element={<ErrorPage />}
