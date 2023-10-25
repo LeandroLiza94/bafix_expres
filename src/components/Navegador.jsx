@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Salir from './Salir';
 
 class Navegador extends React.Component {
 
@@ -21,7 +22,7 @@ class Navegador extends React.Component {
                                 <Link to={"/"} className="nav-link active">Inicio</Link>
                                 <Link to={"/Ingresar"} className="nav-link">Ingresar </Link>
                                 <Link to={"/AcercaDe"} className="nav-link">Acerca De </Link>
-
+                                <Salir/>
                             </div>
                         </div>
                     </div>
