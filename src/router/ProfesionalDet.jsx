@@ -38,7 +38,6 @@ class ProfesionalDet extends React.Component{
             
             return(   <React.Fragment>
                 <Navegador />
-            
                 <Component></Component>
             </React.Fragment>)
 
@@ -75,6 +74,7 @@ const Component = () =>{
 
 
         <div class="container rounded bg-white mt-5 mb-5 border">
+
             <div class="row">
                 <div class="col-md-3 border-right border">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -84,9 +84,10 @@ const Component = () =>{
                             <span>4.0</span> <FaStar class='bx bx-star ms-1'></FaStar> 
                             </div> 
                         </div>
-                        <div class="mt-5 text-center">
-                            <button class="btn btn-primary profile-button" type="button">Solicitar Servicio</button>
-                        </div>
+                        <div class="mt-5 text-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <button class="btn btn-primary profile-button" role="tab" type="button"> <Link to={"/Tarea"} className="nav-link">Solicitar Servicio</Link></button>
+                
+                </div>
                     </div>
                 </div>
                 <div class="col-md-5 border-right border">

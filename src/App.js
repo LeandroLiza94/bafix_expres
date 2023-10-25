@@ -13,6 +13,7 @@ import AuthContent from './components/AuthContent';
 import ProfesionalDet from './router/ProfesionalDet';
 import Buscar from './router/Buscar';
 import ProfesionalCreado from './components/ProfesionalCreado';
+import Tarea from './components/Tarea';
 
 
 function App() {
@@ -68,7 +69,9 @@ function App() {
       <Route path = "/Profesional/:idProfesional" element = {<ProfesionalDet/>} />
       <Route path = "/NavPro" element = {<NavVerticalP/>} />
       <Route path="/ProfesionalCreado" element={<ProfesionalCreado />} />
-      
+      <Route path = "/Tarea" element = {<Tarea/>} />
+
+
           <Route
             path="/error-page"
             element={<ErrorPage />}
