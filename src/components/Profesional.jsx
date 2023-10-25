@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { request, setAuthtoken, setIdProfesional } from '../axios_helper';
-import { Link, Navigate } from 'react-router-dom';
+import { request,  setIdProfesional } from '../axios_helper';
+import {  Navigate } from 'react-router-dom';
 import Salir from './Salir';
 
 

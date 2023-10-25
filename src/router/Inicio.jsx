@@ -3,10 +3,10 @@ import React from 'react'
 import { FaSearch } from "react-icons/fa";
 import Navegador from '../components/Navegador';
 import { Link,useNavigate  } from 'react-router-dom';
-import logo from '../assetss/img/logo.png';
+//import logo from '../assetss/img/logo.png';
 import logobafix from '../assetss/img/bafix-logo.png';
 import { useState } from "react";
-import { request } from '../axios_helper';
+//import { request } from '../axios_helper';
 import  '../assetss/css/Inicio.css';
 
 class Inicio extends React.Component{
@@ -27,9 +27,9 @@ class Inicio extends React.Component{
 
 export default Inicio
 
-const Testconsulta =()=>{
+/*const Testconsulta =()=>{
 
-        /*request(
+        request(
                 "GET",
                 "/Profesionales",
                 {
@@ -55,7 +55,7 @@ const Testconsulta =()=>{
                 
             }).catch((error) => {
                 console.log(error);
-            });*/
+            });
 
             request(
                 "POST",
@@ -73,12 +73,12 @@ const Testconsulta =()=>{
 
 
 
-}
+}*/
 
 const Component = () => {
         let navigate = useNavigate();
-        const [test, setTest] = useState('');
-        /*const handleChange = (event) => {
+        /*const [test, setTest] = useState('');
+        const handleChange = (event) => {
                 const value = event.target.value;
                 setTest(value);
         };*/

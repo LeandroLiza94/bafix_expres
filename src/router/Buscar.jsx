@@ -147,7 +147,7 @@ const Component = () =>{
                                                 
                                                 <div className="row g-0">
                                                     <div className="col-4">
-                                                        <img  src={profesional.foto} className="foto img-fluid rounded-start" />
+                                                        <img  src={profesional.foto} className="foto img-fluid rounded-start" alt="Perfil"/>
                                                     </div>
                                                     <div className="col-8">
                                                         <div className="card-body">

@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import  '../assetss/css/Inicio.css';
 import Navegador from '../components/Navegador';
 import { FaStar } from "react-icons/fa";
 import { request} from '../axios_helper';
 import  '../assetss/css/Inicio.css';
 import { useParams  } from 'react-router-dom'
-import { Link,useNavigate  } from 'react-router-dom';
+//import { Link,useNavigate  } from 'react-router-dom';
 
 class ProfesionalDet extends React.Component{
 
@@ -78,7 +78,7 @@ const Component = () =>{
             <div class="row">
                 <div class="col-md-3 border-right border">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img class="rounded-circle mt-5" width="150px" src={profesional.foto}></img>
+                        <img class="rounded-circle mt-5" width="150px" src={profesional.foto} alt="Perfil"></img>
                         <div class="col-md-12"><label class="labels">Puntaje</label>
                             <div class="ratings"> 
                             <span>4.0</span> <FaStar class='bx bx-star ms-1'></FaStar> 

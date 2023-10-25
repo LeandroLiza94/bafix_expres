@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Navigate, Route,Routes } from 'react-router-dom';
+import {  Route,Routes } from 'react-router-dom';
 import Navegador from '../components/Navegador';
-import ProfesionalCreado from '../components/ProfesionalCreado';
+//import ProfesionalCreado from '../components/ProfesionalCreado';
 import Profesional from '../components/Profesional';
 import { getIdProfesional } from '../axios_helper';
 

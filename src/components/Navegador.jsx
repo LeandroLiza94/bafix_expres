@@ -12,7 +12,7 @@ class Navegador extends React.Component {
 
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                    <Link to={"/"} className="nav-link active"><img src={logo} className='logobfix'></img></Link>
+                    <Link to={"/"} className="nav-link active"><img src={logo} className='logobfix' alt='logobfix'></img></Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
