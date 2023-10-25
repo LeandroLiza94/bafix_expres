@@ -3,7 +3,7 @@ import * as React from 'react';
 import  '../assetss/css/index.css';
 import { request, setAuthtoken } from '../axios_helper';
 import {  Navigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+//import { useForm } from 'react-hook-form';
 
 
 
@@ -65,7 +65,7 @@ class Tarea extends React.Component {
         return(   
             <div>
                 <Navegador />  
-                {this.state.componentToShow == "Enviado" && <Navigate to="/" />}
+                {this.state.componentToShow === "Enviado" && <Navigate to="/" />}
                 <form onSubmit={this.onSubmitTarea} >
                    <center><fieldset class="fieldset-auto-width">
                     <legend>FORMULARIO DE SOLICITUD DE SERVICIO</legend>
@@ -116,17 +116,17 @@ class Tarea extends React.Component {
                     </div> 
                     <br></br>	
 
-                    <h2></h2>
+                    
                     <button type="submit" classname="btn btn-primary"><font color="green size=4">ENVIAR</font></button>
                     <button  type="reset" class="button button"><font color="red size=4">BORRAR</font></button>
-                    <h2></h2>
+                    
                     <br></br>
                     </fieldset></center>
 
                 </form>
 
 
-                <h2></h2>
+                
             </div>
         )
 

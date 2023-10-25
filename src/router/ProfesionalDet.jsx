@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { request} from '../axios_helper';
 import  '../assetss/css/Inicio.css';
 import { useParams  } from 'react-router-dom'
-//import { Link,useNavigate  } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 
 class ProfesionalDet extends React.Component{
 
