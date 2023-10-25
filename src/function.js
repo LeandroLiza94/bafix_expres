@@ -6,8 +6,8 @@ export function show_alert(mensaje, icono, foco=''){
     const MySwal = withReactContent(Swal);
 
     MySwal.fire({
-        titulo:mensaje,
-        icono:icono
+        titulo:`${mensaje}`,
+        icono:`${icono}`
     });
 }
 
