@@ -14,6 +14,7 @@ import ProfesionalDet from './router/ProfesionalDet';
 import Buscar from './router/Buscar';
 import ProfesionalCreado from './components/ProfesionalCreado';
 import Tarea from './components/Tarea';
+import Profesional from './components/Profesional';
 
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
         
       </React.Fragment>
 
-    
+    <Route path="Profesional" element={<Profesional />} />
 
   */
 
@@ -67,8 +68,9 @@ function App() {
       <Route path = "/mensajes" element = {<AuthContent/>} />
       <Route path = "/Buscar/:profesion" element = {<Buscar/>} />
       <Route path = "/Profesional/:idProfesional" element = {<ProfesionalDet/>} />
-      <Route path = "/NavPro" element = {<NavVerticalP/>} />
-      <Route path="/ProfesionalCreado" element={<ProfesionalCreado />} />
+      <Route path = "/NavPro/*" element={<NavVerticalP />} />
+      <Route path = "Profesional" element={<Profesional />} />
+      <Route path = "/ProfesionalCreado" element={<ProfesionalCreado />} />
       <Route path = "/Tarea" element = {<Tarea/>} />
 
 
@@ -78,9 +80,9 @@ function App() {
           />
 
 
-    </Routes>
+        </Routes>  
 
-  </BrowserRouter>
+      </BrowserRouter>
 
 
   </div>
