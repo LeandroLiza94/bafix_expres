@@ -34,7 +34,14 @@ export const getIdProfesional = () => {
 }
 
 
+export const setIdCliente = (idCliente) => {
+  window.localStorage.setItem("id_Cliente", idCliente);
+}
 
+
+export const getIdCliente = () => {
+  return window.localStorage.getItem("id_Cliente");
+}
 
 
 export const request = ( method, url, data)=>{
