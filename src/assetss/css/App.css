@@ -1,5 +1,7 @@
+
 .App {
   text-align: center;
+  border: none;
 }
 
 .App-logo {
@@ -14,7 +16,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #46587a;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,6 +25,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 
 .App-link {
   color: #61dafb;
@@ -36,3 +39,36 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  margin: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.titulo{
+  font-size: 80px;
+}
+
+  .cont {
+    display: flex;
+    align-items: flex; /* Centra verticalmente los elementos */
+    font-weight: bold;
+    font-size:23px;
+    letter-spacing: 1px; /* Aumenta el espacio entre caracteres */
+    word-spacing: 2px; /* Aumenta el espacio entre palabras */
+    line-height: 1.5; /* Aumenta el espacio entre líneas */
+
+  }
+  
+  .image {
+    margin: 0 50px; /* Espacio entre la imagen y el texto */
+  }
+
+  p {
+    margin: 0; /* Elimina el margen predeterminado de los párrafos */
+  }
+  
