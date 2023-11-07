@@ -1,12 +1,8 @@
 import React from 'react';
-//import { setIdProfesional } from '../axios_helper';
-//import {  Navigate } from 'react-router-dom';
 import  {useEffect, useState} from 'react';
-//import Salir from './Salir';
-//import Navegador from './Navegador';
-import { request, getIdProfesional } from '../axios_helper';
+import Salir from './Salir';
+import { request, getIdProfesional, setIdProfesional } from '../axios_helper';
 import Swal from 'sweetalert2';
-//import withReactContent from 'sweetalert2-react-content';
 import { show_alert } from '../function';
 
 const ProfesionalCreado =()=>{
@@ -30,10 +26,11 @@ const ProfesionalCreado =()=>{
 
 
     const getProfesional = () => {
-        if (getIdProfesional === null) {
+        let idPro = getIdProfesional();
+        if ( idPro !== null) {
             request(
                 "GET",
-                "/Profesionales/" + getIdProfesional,
+                "/Profesionales/" + idPro,
                 {}
             ).then((response) => {
                 let resArray = Object.values(response.data);
@@ -140,7 +137,20 @@ const ProfesionalCreado =()=>{
             experiencia: parametros.experiencia,
             ubicacion: parametros.ubicacion
         }).then((response) =>{
-            let usuario
+            setIdProfesional(response.data.idProfesional);
+            let nombre = "Bienvenido " +response.data.nombre;
+            let icono = "success";
+            //show_alert(nombre, icono);
+            Swal.fire('Profesional creado', nombre,'success');
+                if(id !== null){
+                    document.getElementById('btnCerrar').click();
+                    getProfesional();
+                }
+            
+        })
+        .catch(function(error){
+            show_alert('Error en la solicitud', 'error');
+            console.log(error);
         })
 
     }
@@ -149,7 +159,7 @@ const ProfesionalCreado =()=>{
             <div className="container-fluid" >
             
                 <div className="row mt-3">
-               
+                <Salir/>
                 <div className='col-12 col-lg-8 offset-0 offset-lg-2'>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Id: {profesional[0]}</li>
@@ -172,7 +182,7 @@ const ProfesionalCreado =()=>{
                             <div className="d-grid mx-auto">
                                 <button onClick={() => openModal(1)} className="btn btn-dark" data-bs-toggle='modal' data-bs-target='#modalProducts'>
                                     <i className='fa-solid fa-circle-plus'></i>Crear profesional
-                                </button>
+                                </button>   
                             </div>
                         </div>
                         </div>
@@ -186,7 +196,9 @@ const ProfesionalCreado =()=>{
                             </div>
                         </div>
                         <div className='modal-body'>
-                            <input type="hidden" id='id' />
+                            <div className='row'>
+                                <div className='col-6'>
+                                <input type="hidden" id='id' />
                             <div className='input-group mb-3'>
                                 <span className='input-group-text'><i className='fa-solid fa-gift'></i></span>
                                 <input type="text" id='nombre' className='form-control' placeholder='Nombre' value={nombre} onChange={(e) => setNombre(e.target.value)} />
@@ -219,13 +231,19 @@ const ProfesionalCreado =()=>{
                                 <span className='input-group-text'><i className='fa-solid fa-gift'></i></span>
                                 <input type="text" id='ubicacion' className='form-control' placeholder='Ubicacion' value={ubicacion} onChange={(e) => setUbicacion(e.target.value)} />
                             </div>
+                                </div>
+                      
+                            </div>
+                            <div className='row'>
                             <div className='d-grid col-6 mx-auto'>
                                 <button onClick={() => validar()} className='btn btn-success'>
                                     <i className='fa-solid fa-floppy-disk'></i> Guardar
                                 </button>
                             </div>
+                            </div>
+
                             <div className='modal-footer'>
-                                <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
+                                <button type='button' id='btnCerrar' className='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
                             </div>
                         </div>
                     </div>

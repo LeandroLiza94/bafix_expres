@@ -14,6 +14,7 @@ import ProfesionalDet from './router/ProfesionalDet';
 import Buscar from './router/Buscar';
 import ProfesionalCreado from './components/ProfesionalCreado';
 import Tarea from './components/Tarea';
+
 import Profesional from './components/Profesional';
 import NavVerticalC from './router/NavVerticalC';
 
@@ -74,8 +75,7 @@ function App() {
       <Route path = "Profesional" element={<Profesional />} />
       <Route path = "/ProfesionalCreado" element={<ProfesionalCreado />} />
       <Route path = "/Tarea" element = {<Tarea/>} />
-      <Route path = "/NavCli/*" element={<NavVerticalC />} />
-
+      
           <Route
             path="/error-page"
             element={<ErrorPage />}
