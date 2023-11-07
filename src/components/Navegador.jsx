@@ -23,6 +23,7 @@ class Navegador extends React.Component {
                                 <Link to={"/"} className="nav-link active">Inicio</Link>
                                 <Link to={"/Ingresar"} className="nav-link">Ingresar </Link>
                                 <Link to={"/AcercaDe"} className="nav-link">Acerca De </Link>
+                                <Link to={"/NavPro"} className="nav-link">Info </Link>
                                 <Salir/>
                             </div>
                         </div>

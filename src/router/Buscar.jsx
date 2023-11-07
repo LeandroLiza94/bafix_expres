@@ -6,6 +6,7 @@ import { request} from '../axios_helper';
 import  '../assetss/css/Inicio.css';
 import { useParams  } from 'react-router-dom'
 import { Link,useNavigate  } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
 
 class Buscar extends React.Component{
 
@@ -20,14 +21,14 @@ class Buscar extends React.Component{
     /*componentDidMount(){
         request(
             "GET",
-            "/Profesionales",
+            "/Encuestas",
             {
                
             }
            
         ).then((response) =>{
             console.log(response.data);
-            this.setState({listaPro: response.data})  
+            //this.setState({listaPro: response.data})  
         }).catch((error) => {
             console.log(error);
         });
@@ -64,6 +65,8 @@ const Component = () =>{
 
     const[queryBuscar,setQueryBuscar] =useState("");
 
+    const style = {  fontSize: "0.5em" }
+
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
       let path = `/Buscar/${queryBuscar}`; 
@@ -84,9 +87,50 @@ const Component = () =>{
     }).catch((error) => {
         console.log(error);
     });
+
+    /*request(
+        "POST",
+        "/EncuestasProfesional",
+        {
+           id:1
+        }
+       
+    ).then((response) =>{
+        //console.log(response.data);
+        //setProfesional(response.data) ; 
+    }).catch((error) => {
+        console.log(error);
+    });
     
+    request(
+        "POST",
+        "/TareasC",
+        {
+           id:1,
+           estado:"solicitado"
+        }
+       
+    ).then((response) =>{
+        console.log(response.data);
+        //setProfesional(response.data) ; 
+    }).catch((error) => {
+        console.log(error);
+    });*/
 
 
+    /*request(
+        "POST",
+        "/PromedioProfesional",
+        {
+           id:1
+        }
+       
+    ).then((response) =>{
+        console.log(response.data);
+        //setProfesional(response.data) ; 
+    }).catch((error) => {
+        console.log(error);
+    });*/
     return (
         <React.Fragment>
                 <div className="container fadeIn">
@@ -158,9 +202,42 @@ const Component = () =>{
                                                             <p className="card-text">
                                                                 {profesional.ubicacion}
                                                             </p>
-                                                            <p className="card-text">
-                                                                <small className="text-muted">Puntaje todo</small>
-                                                            </p>
+                                                            
+                                                            {Math.floor(profesional.telefono) === 1? 
+                                                            <div class="ratings"> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            </div> : null }
+
+                                                            {Math.floor(profesional.telefono) === 2? 
+                                                            <div class="ratings"> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            </div> : null }
+
+                                                            {Math.floor(profesional.telefono) === 3? 
+                                                            <div class="ratings"> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            </div> : null }
+
+                                                            {Math.floor(profesional.telefono) === 4? 
+                                                            <div class="ratings"> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar>
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar>  
+                                                            </div> : null }
+
+                                                            {Math.floor(profesional.telefono) === 5? 
+                                                            <div class="ratings"> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                            </div> : null }
+
                                                         </div>
                                                     </div>
                                                 </div>

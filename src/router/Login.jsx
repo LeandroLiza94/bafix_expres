@@ -1,7 +1,7 @@
 
 import  '../assetss/css/Login.css';
 import { Link, Navigate } from 'react-router-dom';
-import logo from '../assetss/img/logo.png';
+import logo from '../assetss/img/bafix-logo-min.png';
 import Navegador from '../components/Navegador';
 import * as React from 'react';
 

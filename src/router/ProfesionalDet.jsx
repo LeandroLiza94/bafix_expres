@@ -55,6 +55,12 @@ const Component = () =>{
 
     const [profesional, setProfesional] = React.useState('');
 
+    const [promedio, setPromedio] = React.useState('');
+
+    const [encuestas, setEncuestas] = React.useState('');
+
+    const style = {  fontSize: "0.5em" }
+    const style2 = { textAlign: 'left'}
     request(
         "POST",
         "/Profesional",
@@ -69,6 +75,34 @@ const Component = () =>{
         console.log(error);
     });
 
+    request(
+        "POST",
+        "/PromedioProfesional",
+        {
+           id:idProfesional
+        }
+       
+    ).then((response) =>{
+        //console.log(response.data);
+        setPromedio(response.data) ; 
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    request(
+        "POST",
+        "/EncuestasProfesional",
+        {
+           id:idProfesional
+        }
+       
+    ).then((response) =>{
+        console.log(response.data);
+        setEncuestas(response.data) ; 
+    }).catch((error) => {
+        console.log(error);
+    });
+
     return (
         <React.Fragment>
 
@@ -79,9 +113,51 @@ const Component = () =>{
                 <div class="col-md-3 border-right border">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         <img class="rounded-circle mt-5" width="150px" src={profesional.foto} alt="Perfil"></img>
-                        <div class="col-md-12"><label class="labels">Puntaje</label>
+                        <div class="col-md-12">
                             <div class="ratings"> 
-                            <span>4.0</span> <FaStar class='bx bx-star ms-1'></FaStar> 
+                            
+
+                            {Math.floor(promedio) === 1? 
+                                <div class="ratings"> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                            </div> : null }
+
+                            {Math.floor(promedio) === 2? 
+                                <div class="ratings"> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                            </div> : null }
+
+                            {Math.floor(promedio) === 3? 
+                                <div class="ratings"> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                            </div> : null }
+
+
+                            {Math.floor(promedio) === 4? 
+                                <div class="ratings"> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                            </div> : null }
+
+
+                            {Math.floor(promedio) === 5? 
+                                <div class="ratings"> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar>
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <FaStar class='bx bx-star ms-1' ></FaStar>  
+                            </div> : null }
+
+
+
+
+
                             </div> 
                         </div>
                         <div class="mt-5 text-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -128,33 +204,105 @@ const Component = () =>{
                         </div>
                         
                         <div className="row" key="">
-                                            
+                            {encuestas && encuestas.map(encuesta =>             
+                            
                             <div className="card m-2"  >
                                 
                                 <div className="row g-0">
                                     
                                     <div className="col-8">
-                                        <div className="card-body">
+
+                                    
+                                        
+                                            <div className="card-body"  style={style2}>
                                             <div class="small-ratings">
-                                                <FaStar class="fa fa-star rating-color"></FaStar>
-                                                <FaStar class="fa fa-star rating-color"></FaStar>
-                                                <FaStar class="fa fa-star rating-color"></FaStar>
-                                                <FaStar class="fa fa-star"></FaStar>
-                                                <FaStar class="fa fa-star"></FaStar>
+                                            
+                                            {Math.floor(encuesta.calificacion) === 1? 
+                                            <div className='row'>
+                                            <div className='col-6'>
+                                            {encuesta.nombre }
+                                            </div> 
+                                            <div className='col-6'>
+                                             <div class="ratings"> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                            </div> 
+                                            </div> 
+                                            </div> : null }
+
+                                            {Math.floor(encuesta.calificacion) === 2? 
+                                            <div className='row'>
+                                            <div className='col-6'>
+                                            {encuesta.nombre }
+                                            </div> 
+                                            <div className='col-6'>
+                                             <div class="ratings"> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                            </div> 
+                                            </div> 
+                                            </div> : null }
+                                            
+                                            {Math.floor(encuesta.calificacion) === 3? 
+                                            <div className='row'>
+                                            <div className='col-6'>
+                                            {encuesta.nombre }
+                                            </div> 
+                                            <div className='col-6'>
+                                             <div class="ratings"> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                            </div> 
+                                            </div> 
+                                            </div> : null }
+
+                                            {Math.floor(encuesta.calificacion) === 4? 
+                                            <div className='row'>
+                                            <div className='col-6'>
+                                            {encuesta.nombre }
+                                            </div> 
+                                            <div className='col-6'>
+                                             <div class="ratings"> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                            </div> 
+                                            </div> 
+                                            </div> : null }
+
+                                            {Math.floor(encuesta.calificacion) === 5? 
+                                            <div className='row'>
+                                            <div className='col-6'>
+                                            {encuesta.nombre }
+                                            </div> 
+                                            <div className='col-6'>
+                                             <div class="ratings"> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                            </div> 
+                                            </div> 
+                                            </div> : null }
+
+                                            
+                                            
                                             </div>
-                                            <p className="card-text">
-                                                nombre persona
-                                            </p>
-                                            <p className="card-text">
-                                                COMENTARIO DE LA ENCUESTA ALGO
+                                            
+                                            <p className="card-text ">
+                                            {encuesta.comentario}
                                             </p>
                                             
                                            
                                         </div>
+                                        
+                                       
                                     </div>
                                 </div>
                             </div>
-                                             
+                               )}              
                             </div>
                     </div>
                 </div>

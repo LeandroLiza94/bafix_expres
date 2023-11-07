@@ -70,6 +70,7 @@ function App() {
       <Route path = "/Buscar/:profesion" element = {<Buscar/>} />
       <Route path = "/Profesional/:idProfesional" element = {<ProfesionalDet/>} />
       <Route path = "/NavPro/*" element={<NavVerticalP />} />
+      <Route path = "/NavCli/*" element={<NavVerticalC />} />
       <Route path = "Profesional" element={<Profesional />} />
       <Route path = "/ProfesionalCreado" element={<ProfesionalCreado />} />
       <Route path = "/Tarea" element = {<Tarea/>} />

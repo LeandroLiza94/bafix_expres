@@ -3,6 +3,9 @@ import * as React from 'react';
 import Navegador from '../components/Navegador';
 //import ProfesionalCreado from '../components/ProfesionalCreado';
 import Cliente from '../components/Cliente';
+import Solicitados from '../components/ServiciosSolicitadosC';
+import Proceso from '../components/ServiciosProcesoC';
+import Finalizado from '../components/ServiciosFinalizadosC';
 //import { getIdProfesional } from '../axios_helper';
 
 class NavVerticalC extends React.Component {
@@ -47,16 +50,20 @@ class NavVerticalC extends React.Component {
                           
                         </div>
                         <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-                        Listado Servicios Solicitados
+                         <Solicitados /> 
                         </div>
-                        <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">Listado Servicios en Proceso</div>
-                        <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">Listado Servicios en Finalizados</div>
+                        <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+                        <Proceso /> 
+                        </div>
+                        <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">
+                        <Finalizado />
+                        </div>
                     </div>
             </div>
             </div>
         )
     }
-
+            
 }
 
 export default NavVerticalC
