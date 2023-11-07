@@ -10,7 +10,7 @@ import Registrarse from './components/Registrarse';
 import WelcomeContent from './components/WelcomeContent';
 import NavVerticalP from './router/NavVerticalP';
 import AuthContent from './components/AuthContent';
-import ProfesionalCreado from './components/ProfesionalCreado';
+
 import Profesional from './components/Profesional';
 
 
@@ -65,7 +65,6 @@ function App() {
           <Route path="/mensajes" element={<AuthContent />} />
           <Route path="/NavPro/*" element={<NavVerticalP />} />
           <Route path="Profesional" element={<Profesional />} />
-          <Route path="ProfesionalCreado" element={<ProfesionalCreado />} />
        
           <Route
             path="/error-page"
