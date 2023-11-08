@@ -55,7 +55,7 @@ class Login extends React.Component{
            
         ).then((response) =>{
             if(!response.data.esProfesional){
-                this.setState({componentToShow: "mensaje"});
+                this.setState({componentToShow: "cliente"});
             }else{
                 this.setState({componentToShow: "profesinal"})
             }
@@ -71,7 +71,7 @@ class Login extends React.Component{
             <React.Fragment>
                 <div>
                     <Navegador />
-                    {this.state.componentToShow === "mensaje" && <Navigate to="/mensajes" /> }
+                    {this.state.componentToShow === "cliente" && <Navigate to="/NavCli" /> }
                     {this.state.componentToShow === "profesinal" && <Navigate to="/NavPro" /> }
                 </div>
                 <div className="wrapper fadeInDown">
