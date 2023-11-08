@@ -15,3 +15,22 @@ code {
   width: 30px;
   height: 30px; 
 }
+
+/* formulario */
+
+form {
+  max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.flexbox {
+  width: 40%;
+  padding: 1px;
+  border: 1px solid black;
+  border-radius: 7px;
+}
