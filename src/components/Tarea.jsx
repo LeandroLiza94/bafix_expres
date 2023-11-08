@@ -6,7 +6,6 @@ import {  Navigate } from 'react-router-dom';
 //import { useForm } from 'react-hook-form';
 
 
-
 class Tarea extends React.Component {
 
 
@@ -66,7 +65,7 @@ class Tarea extends React.Component {
             <div>
                 <Navegador />  
                 {this.state.componentToShow === "Enviado" && <Navigate to="/" />}
-                <form onSubmit={this.onSubmitTarea} >
+                <form onSubmit={this.onSubmitTarea} className= "form" >
                    <center><fieldset class="fieldset-auto-width">
                     <legend>FORMULARIO DE SOLICITUD DE SERVICIO</legend>
                     <p>Nombre:</p>
@@ -102,7 +101,7 @@ class Tarea extends React.Component {
 
                     <p>Preferencia horaria:</p>
                     <div class="flexbox">
-                    <select defaultValue="" id ="idhorario" placeholder= "Ingrese su preferencia horaria" name="horario" width="100%" required onChange={this.onChangeHandler} >
+                    <select defaultValue="" id ="idhorario" placeholder= "Ingrese su preferencia horaria" name="horario" required onChange={this.onChangeHandler} >
                       <option hidden value="">Seleccionar preferencia horaria</option>
                       <option>Mañana</option>
                       <option>Tarde</option>
@@ -112,15 +111,13 @@ class Tarea extends React.Component {
 
                     <p>Descripción:</p>
                     <div class="flexbox"> 
-                    <textarea id="descripcion" name="descripcion"  width="100%" cols="40" rows="20" placeholder="Describa el problema que presenta..." required onChange={this.onChangeHandler}></textarea>
+                    <textarea id="descripcion" name="descripcion"  width="100%" cols="40" rows="2" placeholder="Describa el problema que presenta..." required onChange={this.onChangeHandler}></textarea>
                     </div> 
-                    <br></br>	
 
                     
                     <button type="submit" classname="btn btn-primary"><font color="green size=4">ENVIAR</font></button>
                     <button  type="reset" class="button button"><font color="red size=4">BORRAR</font></button>
                     
-                    <br></br>
                     </fieldset></center>
 
                 </form>
