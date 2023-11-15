@@ -21,7 +21,7 @@ const ServiciosFinalizadoC =()=>{
         }
        
     ).then((response) =>{
-        console.log(response.data);
+        //console.log(response.data);
         setServicios(response.data) ; 
     }).catch((error) => {
         console.log(error);
@@ -51,7 +51,7 @@ const ServiciosFinalizadoC =()=>{
                                             Horario:{servicio.horario} Fecha:{servicio.fecha}
                                             </p>
                                             <p className="card-text">
-                                            Estado:{servicio.estado} Dirreccion:{servicio.direccion}
+                                            Estado:{servicio.estado} Direccion:{servicio.direccion}
                                             </p>
                                             <p className="card-text">
                                             Descripcion:{servicio.descripcion}

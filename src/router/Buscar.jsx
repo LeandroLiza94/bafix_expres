@@ -7,6 +7,7 @@ import  '../assetss/css/Inicio.css';
 import { useParams  } from 'react-router-dom'
 import { Link,useNavigate  } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { Rating } from 'react-simple-star-rating'
 
 class Buscar extends React.Component{
 
@@ -64,6 +65,17 @@ const Component = () =>{
 
 
     const[queryBuscar,setQueryBuscar] =useState("");
+
+    const [rating, setRating] = useState(0)
+    
+
+
+    // Catch Rating value
+    const handleRating = (rate) => {
+        setRating(rate)
+
+        // other logic
+    }
 
     const style = {  fontSize: "0.5em" }
 
@@ -155,7 +167,8 @@ const Component = () =>{
                 <br />
                 <div className="container fadeIn border">
                         <div className="row"  >
-                                <div className="col-3 border">
+                                <div className='col-1'></div>
+                                <div className="col-2 border">
                                     
                         
                                 <div className="form-floating mb-3">
@@ -166,23 +179,25 @@ const Component = () =>{
                                 <input type="text" className="form-control text-start" id="floatingUbicacion" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="basic-addon1" onChange={(e)=>setQueryUbicacion(e.target.value)}></input>
                                 <label htmlFor="floatingUbicacion">Ubicacion</label>
                                 </div>
-                                <div className="form-floating mb-3">
-                                <input type="text" className="form-control text-start" id="floatingPuntaje" placeholder="Puntaje" aria-label="Puntaje" aria-describedby="basic-addon1"></input>
-                                <label htmlFor="floatingPuntaje">Puntaje</label>
-                                </div>
+                                                       
+                                <Rating
+                                onClick={handleRating}
+                                
+                                />
+
 
                                 </div>
-                                <div className="col-9 border">
+                                <div className="col-8 border">
                                 
                                 {profesional === ''? <div className="spinner-border text-info" role="status"></div>: null }
 
-                                <div className="d-flex">
-                                    <div className="overflow-auto" >
+                                
 
                                     {profesional && profesional.filter((profesional) =>
                                         profesional.profesion.toLowerCase().includes(profesion.toLowerCase())&&
                                         (profesional.nombre+" "+profesional.apellido).toLowerCase().includes(queryNombre.toLowerCase())
                                         && profesional.ubicacion.toLowerCase().includes(queryUbicacion.toLowerCase())
+                                        && Math.floor(profesional.telefono)>=rating
                                         ).map(profesional =>
                                         
                                         <div className="row" key={profesional.idProfesional}>
@@ -195,48 +210,61 @@ const Component = () =>{
                                                     </div>
                                                     <div className="col-8">
                                                         <div className="card-body">
-                                                            <h5 className="card-title">{profesional.nombre} {profesional.apellido}</h5>
-                                                            <p className="card-text">
-                                                                {profesional.profesion}
-                                                            </p>
-                                                            <p className="card-text">
-                                                                {profesional.ubicacion}
-                                                            </p>
+                                                            <div className='row'> 
+                                                                <div className='col'>
+                                                                    <h5 className="card-title">Nombre:{profesional.nombre} {profesional.apellido}</h5>
+                                                                </div>
+                                                                <div className='col'>
+                                                                    <h5 className="card-text">Profesion:{profesional.profesion}</h5>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                            <div className='row'> 
+                                                                <div className='col'>
+                                                                    <h5 className="card-text">Ubicacion:{profesional.ubicacion}</h5>
+                                                                </div>
+                                                                <div className='col'>
+                                                                {Math.floor(profesional.telefono) === 1? 
+                                                                <div class="ratings"> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                </div> : null }
+
+                                                                {Math.floor(profesional.telefono) === 2? 
+                                                                <div class="ratings"> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                </div> : null }
+
+                                                                {Math.floor(profesional.telefono) === 3? 
+                                                                <div class="ratings"> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                </div> : null }
+
+                                                                {Math.floor(profesional.telefono) === 4? 
+                                                                <div class="ratings"> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar>
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar>  
+                                                                </div> : null }
+
+                                                                {Math.floor(profesional.telefono) === 5? 
+                                                                <div class="ratings"> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                </div> : null }
+                                                                </div>
+                                                            </div>
                                                             
-                                                            {Math.floor(profesional.telefono) === 1? 
-                                                            <div class="ratings"> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            </div> : null }
-
-                                                            {Math.floor(profesional.telefono) === 2? 
-                                                            <div class="ratings"> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            </div> : null }
-
-                                                            {Math.floor(profesional.telefono) === 3? 
-                                                            <div class="ratings"> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            </div> : null }
-
-                                                            {Math.floor(profesional.telefono) === 4? 
-                                                            <div class="ratings"> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar>
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar>  
-                                                            </div> : null }
-
-                                                            {Math.floor(profesional.telefono) === 5? 
-                                                            <div class="ratings"> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                            </div> : null }
+                                                            
+                                                            
+                                                            
+                                                            
 
                                                         </div>
                                                     </div>
@@ -246,9 +274,9 @@ const Component = () =>{
                                         </div>
                                     )}    
                                     </div>
-                                </div>
 
-                                </div>
+                                    <div className='col-1'></div>
+                                
                                
                         </div>
                         
