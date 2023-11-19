@@ -94,7 +94,7 @@ const Component = () =>{
         }
        
     ).then((response) =>{
-        //console.log(response.data);
+        console.log(response.data);
         setProfesional(response.data) ; 
     }).catch((error) => {
         console.log(error);

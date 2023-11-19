@@ -1,14 +1,10 @@
 import React from 'react';
-//import { setIdProfesional } from '../axios_helper';
-//import {  Navigate } from 'react-router-dom';
-import  {useEffect, useState} from 'react';
-//import Salir from './Salir';
-//import Navegador from './Navegador';
-import { request, getIdCliente } from '../axios_helper';
-import Swal from 'sweetalert2';
+import { request } from '../axios_helper';
+//import Swal from 'sweetalert2';
 //import withReactContent from 'sweetalert2-react-content';
-import { show_alert } from '../function';
+//import { show_alert } from '../function';
 import  '../assetss/css/Inicio.css'; 
+import { FaPaperPlane } from "react-icons/fa";
 
 
 
@@ -18,8 +14,36 @@ const ServiciosSolicitadosC =()=>{
 
     const [modal, setModal] = React.useState('');
 
-    let miModal ={idServicio:'',horario:''};
-    //setModal(miModal);
+    //const [chatsServicio, setchatsServicio] = React.useState('');
+
+    const [michat, setmichat] = React.useState([]);
+
+    const [mensaje, setMensaje] = React.useState('');
+
+    
+    function guardarMensaje(idServicio,mensaje) { 
+        console.log(mensaje);
+        request(
+            "POST",
+            "/GuardarMensaje",
+            {
+                idServicio:idServicio,
+                tipo:"cliente",
+                mensaje:mensaje,
+                fecha:"20231101"
+            }
+           
+        ).then((response) =>{
+            console.log(response.data);
+            setMensaje("")
+            cambiarModal(idServicio);
+               
+            
+        }).catch((error) => {
+            console.log(error);
+        });
+
+    }
 
     function cambiarModal(servicio) { 
         let array=[];
@@ -36,22 +60,76 @@ const ServiciosSolicitadosC =()=>{
         array.push(servicio.nombreCli); 
         array.push(servicio.nombrePro); 
         //console.log(servicio);
-        setModal(array);
+        setModal(array); 
+
+        request(
+            "POST",
+            "/Chats",
+            {
+               id:servicio.idServicio
+            }
+           
+        ).then((response) =>{
+            //console.log(response.data);
+            setmichat(response.data)
+               
+            
+        }).catch((error) => {
+            console.log(error);
+        });
     }
+
+    function cambiarEstado(idServicio,estado) {
+        
+        request(
+            "POST",
+            "/TareaCambiarEstado",
+            {
+               id:idServicio,
+               estado:estado
+            }
+           
+        ).then((response) =>{
+            console.log(response.data);
+            //setServicios(response.data) ; 
+            //window.location.reload()
+        }).catch((error) => {
+            console.log(error);
+        });
+    
+    }
+   
+    function pedirMotivo(idServicio) {
+        let motivo = prompt("Ingrese motivo de la reprogramación:");
+        //console.log(motivo);
+        if (motivo!=null) {
+            guardarMensaje(idServicio,motivo);
+            cambiarEstado(idServicio,"Solicitado");
+        }
+        
+    }
+
+
     request(
         "POST",
         "/TareasC",
         {
            id:1,
-           estado:"solicitado"
+           estado:"Solicitado"
         }
        
     ).then((response) =>{
         //console.log(response.data);
         setServicios(response.data) ; 
+        
     }).catch((error) => {
         console.log(error);
     });
+
+    
+    //console.log(chatsServicio); 
+
+    
     
     return ( 
         
@@ -105,58 +183,130 @@ const ServiciosSolicitadosC =()=>{
                     )}  
 
 
-                    <div id='mimodal' className='modal fade' aria-hidden='true'>
-                            <div className='row '>
-                                <div className='col-2'></div>
-                                <div className='col-8 mimodal'>
-
-                                <div className='modal-dialog'>
-                                    <div className='modal-content'>
-                                        <div className='modal-header'>
-                                            
-                                            <label className="h5"> {modal[7]}</label>
-                                            <button type='button' className='btn-close' data-bs-dismiss='modal' ariel-label='Close'></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='modal-body'>
-                                    <div className='row'>
-                                        <div className='col-6'>
-                                            <input type="hidden" id='id' />
-                                            <div className='input-group mb-3'>
-                                                <span className='input-group-text'>{modal.horario}</span>
-                                                <input type="text" id='nombre' className='form-control' placeholder='Nombre'  />
-                                            </div>
-                                            <div className='input-group mb-3'>
-                                                <span className='input-group-text'></span>
-                                                <input type="text" id='apellido' className='form-control' placeholder='Apellido'  />
-                                            </div>
-                    
-                                        </div>
-
-                                        <div className='col-6'>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Example textarea</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </div>
-                                            <button  className='btn btn-success'>
-                                            <i className='fa-solid fa-floppy-disk'></i> Enviar
-                                             </button>
-                                                            
-                                        </div>
-                            
-                                    </div>
-                                    
-
-                                    <div className='modal-footer'>
-                                        <button type='button' id='btnCerrar' className='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
-                                    </div>
-                                </div>
-                                </div>
-                                <div className='col-2'></div>
+                    <div id='mimodal' className='modal modal-lg fade ' aria-hidden='true'>
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Servicio N°: {modal[7]}</h5>
+                                <button type="button" className="close"  data-bs-toggle='modal' data-bs-target='#mimodal' aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+                            <div class="modal-body">
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className="row  text-start">
+                                            <div className="form-group col-sm-6 flex-column d-flex"> 
+                                                <label className="form-control-label px-3">Profesional:</label> 
+                                                <label className="form-control-label px-3">{modal[11]}</label>
+                                                
+                                            </div>
+                                            <div className="form-group col-sm-6 flex-column d-flex"> 
+                                            <label className="form-control-label px-3">Cliente:</label> 
+                                            <label className="form-control-label px-3">{modal[10]}</label>
+                                            
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div className="row text-start">
+                                            <div className="form-group col-sm-6 flex-column d-flex">
+                                                <label className="form-control-label px-3">Dirección:</label>
+                                                <label className="form-control-label px-3">{modal[1]}</label>
+                                                </div>
+                                            <div className="form-group col-sm-6 flex-column d-flex"> 
+                                            <label className="form-control-label px-3">Estado:</label> 
+                                            <label className="form-control-label px-3">{modal[2]}</label>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div className="row  text-start">
+                                            <div className="form-group col-sm-6 flex-column d-flex">
+                                                <label className="form-control-label px-3">Fecha:</label>
+                                                <label className="form-control-label px-3">{modal[3]}</label>
+                                                </div>
+                                            <div className="form-group col-sm-6 flex-column d-flex"> 
+                                            <label className="form-control-label px-3">Horario:</label> 
+                                            <label className="form-control-label px-3">{modal[4]}</label>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div className="row text-start">
+                                            <div className="form-group col-sm-12 flex-column d-flex">
+                                                <label className="form-control-label px-3">Descripción:</label>
+                                                <label className="form-control-label px-3">{modal[0]}</label>
+                                                
+                                            </div>
+                                            
+                                            
+                                            
+                                        </div>
+                                    </div>    
+                                    <div className="col-6">
+                                        <div className="row justify-content-between text-left">
+                                                                                    
+                                            <div className="container border" style={{height:"200px"}}>
+
+                                            
+                                            {michat=== []? <div className="spinner-border text-info" role="status"></div>: null}    
+
+                                            <ul className="list-group" style={{overflowY:"scroll",height: "200px"}}>
+                                            {michat && michat.map(chat =>
+                                                
+                                                
+                                                <span>{chat.tipo=== "cliente"? <li className="list-group-item list-group-item-primary text-end">{chat.mensaje}</li>: <li className="list-group-item list-group-item-info text-start">{chat.mensaje}</li>}   </span>
+                                            
+                                            )}
+                                                
+
+                                            </ul>   
+                                            
+
+                                            </div>
+                                        </div>   
+                                        <br />
+                                        <div className="row justify-content-between text-left">
+                                        <div className="input-group">
+                                        <button className="input-group-text btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => guardarMensaje(modal[7],mensaje)}><FaPaperPlane className='bx bx-star ms-1' ></FaPaperPlane>   </button>
+                                        <textarea className="form-control" aria-label="With textarea" onChange={(e)=>setMensaje(e.target.value)} value={mensaje}></textarea>
+                                        </div>
+                                        </div>   
+                                                
+                                            
+                                            
+                                    </div>    
+                                    
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {modal[2]=== "Solicitado"? 
+                                <div className="row" style={{width:"100%"}}>
+                                    <div className="col-6">
+                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => { if (window.confirm('Esta seguro que desea cancelar esta solicitud?')) cambiarEstado(modal[7],"Cancelado") } }>Cancelar Solicitud</button>
+                                    </div>
+                                    <div className="col-6">
+                                        <button type="button" className="btn btn-secondary"  data-bs-toggle='modal' data-bs-target='#mimodal'>Cerrar</button>
+                                    </div>
+                                </div>
+                                : null}
+                                {modal[2]=== "Propuesto"? 
+                                <div className="row" style={{width:"100%"}}>
+                                    <div className="col-6">
+                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => pedirMotivo(modal[7])}>Reprogramar</button>
+                                    </div>
+                                    <div className="col-6">
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarEstado(modal[7],"Coordinado")}>Aceptar</button>
+                                    </div>
+                                </div>
+                                : null}     
+                                
+                                
+                            </div>
+                            </div>
+                        </div>
+
+                        
                             
-                        </div>    
+                    </div>    
 
             </div>
 
@@ -166,4 +316,8 @@ const ServiciosSolicitadosC =()=>{
 
     }
 
+
+    
 export default ServiciosSolicitadosC
+
+

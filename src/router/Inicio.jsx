@@ -82,6 +82,7 @@ const Component = () => {
                 const value = event.target.value;
                 setTest(value);
         };*/
+        
 
         const[queryBuscar,setQueryBuscar] =useState("");
         const routeChange = () =>{ 
