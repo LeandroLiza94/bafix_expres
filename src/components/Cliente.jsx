@@ -28,12 +28,13 @@ const ClienteCreado =()=>{
 
 
     const getCliente = () => {
-        if (getIdCliente === null) {
+        //console.log(getIdCliente);
+        if (cliente === '') {
             request(
                 "POST",
                 "/Cliente",
                 {
-                   id:getIdCliente
+                   id:1
                 }
             ).then((response) => {
                 setCliente(response.data) ; 
@@ -133,7 +134,7 @@ const ClienteCreado =()=>{
             
                 <div className="row mt-3">
                
-                <div className='col-12 col-lg-8 offset-0 offset-lg-2'>
+                <div className='col-12 '>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Id: {cliente.idCliente}</li>
                         <li className="list-group-item">Nombre: {cliente.nombre}</li>
@@ -148,15 +149,7 @@ const ClienteCreado =()=>{
                         </button>
                     </ul>
                     </div>
-                    <div className="row mt-3">
-                        <div className="col-md-4 offset-md-4">
-                            <div className="d-grid mx-auto">
-                                <button onClick={() => openModal(1)} className="btn btn-dark" data-bs-toggle='modal' data-bs-target='#modalProducts'>
-                                    <i className='fa-solid fa-circle-plus'></i>Crear Cliente
-                                </button>
-                            </div>
-                        </div>
-                        </div>
+                    
                     <div id='modalProducts' className='modal fade' aria-hidden='true'>
                         <div className='modal-dialog'>
                             <div className='modal-content'>

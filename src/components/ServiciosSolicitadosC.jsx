@@ -4,7 +4,8 @@ import { request } from '../axios_helper';
 //import withReactContent from 'sweetalert2-react-content';
 //import { show_alert } from '../function';
 import  '../assetss/css/Inicio.css'; 
-import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane,FaInfoCircle } from "react-icons/fa";
+import { useEffect } from 'react';
 
 
 
@@ -93,6 +94,8 @@ const ServiciosSolicitadosC =()=>{
             console.log(response.data);
             //setServicios(response.data) ; 
             //window.location.reload()
+            traerListado();
+            window.location.reload()
         }).catch((error) => {
             console.log(error);
         });
@@ -103,29 +106,39 @@ const ServiciosSolicitadosC =()=>{
         let motivo = prompt("Ingrese motivo de la reprogramación:");
         //console.log(motivo);
         if (motivo!=null) {
-            guardarMensaje(idServicio,motivo);
+            guardarMensaje(idServicio,"Se pide reprogramar debido: "+motivo);
             cambiarEstado(idServicio,"Solicitado");
+            
         }
         
     }
 
+    useEffect(()=>{
 
-    request(
-        "POST",
-        "/TareasC",
-        {
-           id:1,
-           estado:"Solicitado"
+         if (servicios==='') {
+            traerListado();
         }
-       
-    ).then((response) =>{
-        //console.log(response.data);
-        setServicios(response.data) ; 
         
-    }).catch((error) => {
-        console.log(error);
-    });
-
+    }, [servicios])
+    
+    function traerListado() {
+        request(
+            "POST",
+            "/TareasC",
+            {
+               id:1,
+               estado:"Solicitado"
+            }
+           
+        ).then((response) =>{
+            //console.log(response.data);
+            setServicios(response.data) ; 
+            
+        }).catch((error) => {
+            console.log(error);
+        });
+        
+    }
     
     //console.log(chatsServicio); 
 
@@ -141,29 +154,52 @@ const ServiciosSolicitadosC =()=>{
                 
                     {servicios && servicios.map(servicio =>
                         
-                        <div>
+                        <div key={servicio.idServicio}>
                             <div className="card "  >
                                 
                                 <div className="row g-0">
                                     
-                                    <div className="col-8">
+                                    <div className="col-12">
 
                                     
                                         
                                         <div className="card-body">
-                                            <p className="card-text">
-                                            Horario:{servicio.horario} Fecha:{servicio.fecha}
-                                            </p>
-                                            <p className="card-text">
-                                            Estado:{servicio.estado} Direccion:{servicio.direccion}
-                                            </p>
-                                            <p className="card-text">
-                                            Descripcion:{servicio.descripcion}
-                                            </p>
-                                            <button  className="btn btn-warning" 
-                                            data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarModal(servicio)}>
-                                                Ver Solicitud
-                                            </button>
+
+                                        <div className="row">
+                                                <div className="col-8">
+                                                    <div className="row">
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Fecha: {servicio.fecha}</label> 
+                                                        </div> 
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Estado: {servicio.estado}</label> 
+                                                        </div> 
+
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Cliente: {servicio.horario}</label> 
+                                                        </div> 
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Direccion: {servicio.direccion}</label> 
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                                  
+                                                <div className="col-4">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                        <button  className="btn btn-warning" 
+                                                            data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarModal(servicio)}>
+                                                                <FaInfoCircle className='bx bx-star ms-1' ></FaInfoCircle> Ver Solicitud
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
                                            
                                         </div>
                                         
@@ -183,7 +219,7 @@ const ServiciosSolicitadosC =()=>{
                     )}  
 
 
-                    <div id='mimodal' className='modal modal-lg fade ' aria-hidden='true'>
+                    <div id='mimodal' className='modal modal-lg fade ' aria-hidden='true' >
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                             <div className="modal-header">
@@ -192,7 +228,7 @@ const ServiciosSolicitadosC =()=>{
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <div className="row">
                                     <div className="col-6">
                                         <div className="row  text-start">
@@ -277,7 +313,7 @@ const ServiciosSolicitadosC =()=>{
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div className="modal-footer">
                                 {modal[2]=== "Solicitado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">

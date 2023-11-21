@@ -9,8 +9,10 @@ import { request } from '../axios_helper';
 //import withReactContent from 'sweetalert2-react-content';
 //import { show_alert } from '../function';
 import { FaPaperPlane,FaInfoCircle } from "react-icons/fa";
+//import { FaStar } from "react-icons/fa";
+import { Rating } from 'react-simple-star-rating'
 
-const ServiciosProcesoC =()=>{
+const ServiciosRealizadosC =()=>{
 
 
     const [servicios, setServicios] = React.useState('');
@@ -22,6 +24,16 @@ const ServiciosProcesoC =()=>{
     const [michat, setmichat] = React.useState([]);
 
     const [mensaje, setMensaje] = React.useState('');
+
+    const [rating, setRating] = React.useState(0);
+
+    const [opinion, setOpinion] = React.useState('');
+    
+
+    const handleRating = (rate) => {
+        setRating(rate)
+
+    }
 
     
     function guardarMensaje(idServicio,mensaje) { 
@@ -46,6 +58,49 @@ const ServiciosProcesoC =()=>{
             console.log(error);
         });
 
+    }
+    function guardarEncuesta(idServicio,idPro,idCli) {
+        request(
+            "POST",
+            "/GuardarEncuesta",
+            {
+                idServicio:idServicio,
+                idCliente:idCli,
+                idProfesional:idPro,
+                calificacion:rating,
+                comentario:opinion   
+           }
+        ).then((response) =>{
+            console.log(response.data);
+            //setServicios(response.data) ; 
+            //window.location.reload()
+            cambiarEstado(idServicio,"Finalizado")
+        }).catch((error) => {
+            console.log(error);
+        });
+        
+    }
+
+    function cambiarEstado(idServicio,estado) {
+        
+        request(
+            "POST",
+            "/TareaCambiarEstado",
+            {
+               id:idServicio,
+               estado:estado
+            }
+           
+        ).then((response) =>{
+            console.log(response.data);
+            //setServicios(response.data) ; 
+            
+            traerListado();
+            window.location.reload()
+        }).catch((error) => {
+            console.log(error);
+        });
+    
     }
 
     function cambiarModal(servicio) { 
@@ -97,7 +152,7 @@ const ServiciosProcesoC =()=>{
             "/TareasC",
             {
                id:1,
-               estado:"Coordinado"
+               estado:"Realizado"
             }
            
         ).then((response) =>{
@@ -112,7 +167,7 @@ const ServiciosProcesoC =()=>{
     return ( 
         
             <div className="row " >
-                <h3>Servicios en proceso</h3>              
+                <h3>Servicios Realizados</h3>              
                 {servicios === ''? <div className="spinner-border text-info" role="status"></div>: null }
 
                 {servicios && servicios.map(servicio =>
@@ -154,7 +209,7 @@ const ServiciosProcesoC =()=>{
                                                     <div className="row">
                                                         <div className="col-12">
                                                         <button  className="btn btn-warning" 
-                                                            data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => cambiarModal(servicio)}>
+                                                            data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarModal(servicio)}>
                                                                 <FaInfoCircle className='bx bx-star ms-1' ></FaInfoCircle> Ver Solicitud
                                                             </button>
                                                         </div>
@@ -182,12 +237,12 @@ const ServiciosProcesoC =()=>{
                     )}  
 
 
-                    <div id='mimodal2' className='modal modal-lg fade ' aria-hidden='true'>
+                    <div id='mimodal3' className='modal modal-lg fade ' aria-hidden='true'>
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">Servicio N°: {modal[7]}</h5>
-                                <button type="button" className="close"  data-bs-toggle='modal' data-bs-target='#mimodal2' aria-label="Close">
+                                <button type="button" className="close"  data-bs-toggle='modal' data-bs-target='#mimodal3' aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -261,7 +316,7 @@ const ServiciosProcesoC =()=>{
                                         <br />
                                         <div className="row justify-content-between text-left">
                                         <div className="input-group">
-                                        <button className="input-group-text btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => guardarMensaje(modal[7],mensaje)}><FaPaperPlane className='bx bx-star ms-1' ></FaPaperPlane>   </button>
+                                        <button className="input-group-text btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => guardarMensaje(modal[7],mensaje)}><FaPaperPlane className='bx bx-star ms-1' ></FaPaperPlane>   </button>
                                         <textarea className="form-control" aria-label="With textarea" onChange={(e)=>setMensaje(e.target.value)} value={mensaje}></textarea>
                                         </div>
                                         </div>   
@@ -271,6 +326,24 @@ const ServiciosProcesoC =()=>{
                                     </div>    
                                     
                                 </div>
+                                <hr />
+                                {modal[2]=== "Encuestar"? 
+                                <div className="row">
+                                    <h5 className="text-start">Le pedimos su opinión del servicio brindado:</h5>
+                                    <div className="col-8">
+                                    <p className="text-start">Opinión:</p>
+                                    <textarea className="form-control" aria-label="With textarea" onChange={(e)=>setOpinion(e.target.value)} value={opinion}></textarea>
+                                        
+                                    </div>
+
+                                    <div className="col-4">
+                                    <p className="text-start">Calificación:</p>
+                                    <Rating  onClick={handleRating}/>
+                                    </div>
+
+                                </div>
+                                : null}
+                                
                             </div>
                             <div className="modal-footer">
                                 
@@ -279,7 +352,7 @@ const ServiciosProcesoC =()=>{
                                         
                                     </div>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-secondary"  data-bs-toggle='modal' data-bs-target='#mimodal2'>Cerrar</button>
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => guardarEncuesta(modal[7],modal[6],modal[5])}>Aceptar</button>
                                     </div>
                                 </div>
                                 
@@ -301,4 +374,4 @@ const ServiciosProcesoC =()=>{
 
     }
 
-export default ServiciosProcesoC
+export default ServiciosRealizadosC

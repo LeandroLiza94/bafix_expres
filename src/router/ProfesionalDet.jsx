@@ -107,51 +107,51 @@ const Component = () =>{
         <React.Fragment>
 
 
-        <div class="container rounded bg-white mt-5 mb-5 border">
+        <div className="container rounded bg-white mt-5 mb-5 border">
 
-            <div class="row">
-                <div class="col-md-3 border-right border">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img class="rounded-circle mt-5" width="150px" src={profesional.foto} alt="Perfil"></img>
-                        <div class="col-md-12">
-                            <div class="ratings"> 
+            <div className="row">
+                <div className="col-md-3 border-right border">
+                    <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img className="rounded-circle mt-5" width="150px" src={profesional.foto} alt="Perfil"></img>
+                        <div className="col-md-12">
+                            <div className="ratings"> 
                             
 
                             {Math.floor(promedio) === 1? 
-                                <div class="ratings"> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <div className="ratings"> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
                             </div> : null }
 
                             {Math.floor(promedio) === 2? 
-                                <div class="ratings"> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <div className="ratings"> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
                             </div> : null }
 
                             {Math.floor(promedio) === 3? 
-                                <div class="ratings"> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <div className="ratings"> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
                             </div> : null }
 
 
                             {Math.floor(promedio) === 4? 
-                                <div class="ratings"> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
+                                <div className="ratings"> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
                             </div> : null }
 
 
                             {Math.floor(promedio) === 5? 
-                                <div class="ratings"> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar>
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar> 
-                                <FaStar class='bx bx-star ms-1' ></FaStar>  
+                                <div className="ratings"> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar>
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar> 
+                                <FaStar className='bx bx-star ms-1' ></FaStar>  
                             </div> : null }
 
 
@@ -160,33 +160,33 @@ const Component = () =>{
 
                             </div> 
                         </div>
-                        <div class="mt-5 text-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <button class="btn btn-primary profile-button" role="tab" type="button"> <Link to={"/Tarea"} className="nav-link">Solicitar Servicio</Link></button>
+                        <div className="mt-5 text-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <button className="btn btn-primary profile-button" role="tab" type="button"> <Link to={"/Tarea"} className="nav-link">Solicitar Servicio</Link></button>
                 
                 </div>
                     </div>
                 </div>
-                <div class="col-md-5 border-right border">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Descripción Profesional</h4>
+                <div className="col-md-5 border-right border">
+                    <div className="p-3 py-5">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h4 className="text-right">Descripción Profesional</h4>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-12">
-                                <label class="labels">Nombre y Apellido</label>
+                        <div className="row mt-2">
+                            <div className="col-md-12">
+                                <label className="labels">Nombre y Apellido</label>
                                 <p>{profesional.nombre} {profesional.apellido}</p>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label class="labels">Profesión</label>
+                        <div className="row mt-3">
+                            <div className="col-md-12">
+                                <label className="labels">Profesión</label>
                                 <p>{profesional.profesion}</p>
                             </div>
-                            <div class="col-md-12">
-                                <label class="labels">Ubicacion</label>
+                            <div className="col-md-12">
+                                <label className="labels">Ubicacion</label>
                                 <p>{profesional.ubicacion}</p>
                             </div>
-                            <div class="col-md-12"><label class="labels">Experiencia</label>
+                            <div className="col-md-12"><label className="labels">Experiencia</label>
                                 <p>{profesional.experiencia}</p>
                             </div>
                             
@@ -196,9 +196,9 @@ const Component = () =>{
                         
                     </div>
                 </div>
-                <div class="col-md-4 border">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center experience">
+                <div className="col-md-4 border">
+                    <div className="p-3 py-5">
+                        <div className="d-flex justify-content-between align-items-center experience">
                             <span>Opiniones</span>
                             
                         </div>
@@ -215,7 +215,7 @@ const Component = () =>{
                                     
                                         
                                             <div className="card-body"  style={style2}>
-                                            <div class="small-ratings">
+                                            <div className="small-ratings">
                                             
                                             {Math.floor(encuesta.calificacion) === 1? 
                                             <div className='row'>
@@ -223,8 +223,8 @@ const Component = () =>{
                                             {encuesta.nombre }
                                             </div> 
                                             <div className='col-6'>
-                                             <div class="ratings"> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <div className="ratings"> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                             </div> 
                                             </div> 
                                             </div> : null }
@@ -235,9 +235,9 @@ const Component = () =>{
                                             {encuesta.nombre }
                                             </div> 
                                             <div className='col-6'>
-                                             <div class="ratings"> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <div className="ratings"> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                             </div> 
                                             </div> 
                                             </div> : null }
@@ -248,10 +248,10 @@ const Component = () =>{
                                             {encuesta.nombre }
                                             </div> 
                                             <div className='col-6'>
-                                             <div class="ratings"> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <div className="ratings"> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                             </div> 
                                             </div> 
                                             </div> : null }
@@ -262,11 +262,11 @@ const Component = () =>{
                                             {encuesta.nombre }
                                             </div> 
                                             <div className='col-6'>
-                                             <div class="ratings"> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <div className="ratings"> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                             </div> 
                                             </div> 
                                             </div> : null }
@@ -277,12 +277,12 @@ const Component = () =>{
                                             {encuesta.nombre }
                                             </div> 
                                             <div className='col-6'>
-                                             <div class="ratings"> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                             <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                             <div className="ratings"> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                             <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                             </div> 
                                             </div> 
                                             </div> : null }

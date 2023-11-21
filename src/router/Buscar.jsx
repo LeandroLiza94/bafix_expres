@@ -225,38 +225,38 @@ const Component = () =>{
                                                                 </div>
                                                                 <div className='col'>
                                                                 {Math.floor(profesional.telefono) === 1? 
-                                                                <div class="ratings"> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <div className="ratings"> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                                                 </div> : null }
 
                                                                 {Math.floor(profesional.telefono) === 2? 
-                                                                <div class="ratings"> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <div className="ratings"> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                                                 </div> : null }
 
                                                                 {Math.floor(profesional.telefono) === 3? 
-                                                                <div class="ratings"> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <div className="ratings"> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                                                 </div> : null }
 
                                                                 {Math.floor(profesional.telefono) === 4? 
-                                                                <div class="ratings"> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar>
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar>  
+                                                                <div className="ratings"> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar>
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar>  
                                                                 </div> : null }
 
                                                                 {Math.floor(profesional.telefono) === 5? 
-                                                                <div class="ratings"> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
-                                                                <FaStar class='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <div className="ratings"> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
+                                                                <FaStar className='bx bx-star ms-1' style={style}></FaStar> 
                                                                 </div> : null }
                                                                 </div>
                                                             </div>

@@ -58,3 +58,21 @@ export const request = ( method, url, data)=>{
     });
 
 };
+
+export const getCliente = () => {
+  let retorno=null;
+    request(
+        "POST",
+        "/Cliente",
+        {
+          id:1
+        }
+    ).then((response) => {
+        retorno=response.data ; 
+
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    return retorno;
+}
