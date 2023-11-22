@@ -1,17 +1,18 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect } from 'react';
 import { request } from '../axios_helper';
 //import Swal from 'sweetalert2';
 //import withReactContent from 'sweetalert2-react-content';
 //import { show_alert } from '../function';
 import  '../assetss/css/Inicio.css'; 
 import { FaPaperPlane } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 
 
 
-const ServiciosSolicitadosC =()=>{
+const ServiciosPagadosP =()=>{
 
-    const [servicios, setServicios] = React.useState('');
+     const [servicios, setServicios] = React.useState('');
 
     const [modal, setModal] = React.useState('');
 
@@ -59,7 +60,8 @@ const ServiciosSolicitadosC =()=>{
         array.push(servicio.mail);
         array.push(servicio.telefono); 
         array.push(servicio.nombreCli); 
-        array.push(servicio.nombrePro); 
+        array.push(servicio.nombrePro);
+        array.push(servicio.precio); 
         //console.log(servicio);
         setModal(array); 
 
@@ -80,7 +82,7 @@ const ServiciosSolicitadosC =()=>{
         });
     }
 
-    function cambiarEstado(idServicio,estado) {
+     function cambiarEstado(idServicio,estado) {
         
         request(
             "POST",
@@ -92,54 +94,73 @@ const ServiciosSolicitadosC =()=>{
            
         ).then((response) =>{
             console.log(response.data);
-            //setServicios(response.data) ; 
+            getServiciosPagados();
             //window.location.reload()
         }).catch((error) => {
             console.log(error);
         });
     
     }
-   
-    function pedirMotivo(idServicio) {
-        let motivo = prompt("Ingrese motivo de la reprogramación:");
+
+    const actulizarPrecio = (idServicio,precio) =>{
+
+        request(
+            "POST",
+            "/ActualizarPrecio",
+            {
+               id:idServicio,
+               precio:precio
+            }
+           
+        ).then((response) =>{
+            console.log(response.data);
+            getServiciosPagados();
+            Swal.fire('Servicio Finalizado', 'Se notificara al cliente el monto a pagar', 'success');
+            //setServicios(response.data) ; 
+            //window.location.reload()
+        }).catch((error) => {
+            console.log(error);
+        });
+    
+
+    }
+
+    function ingresarPrecio(idServicio) {
+        let monto = prompt("Ingrese monto por el servicio:");
         //console.log(motivo);
-        if (motivo!=null) {
-            guardarMensaje(idServicio,motivo);
-            cambiarEstado(idServicio,"Solicitado");
+        if (monto!=null) {
+            actulizarPrecio(idServicio,monto);
+            cambiarEstado(idServicio,"Finalizado");
+            
         }
         
     }
 
-
-					
-								   
-		  
     useEffect( ()=>{
-        getServiciosSinConfirmar();
+        getServiciosPagados();
     },[]);
 
-   
-    const getServiciosSinConfirmar = () =>{
-   
-										   
-    request(
-        "POST",
-        "/TareasC",
-        {
-           id:1,
-           estado:"Solicitado"
-        }
-       
-    ).then((response) =>{
-        //console.log(response.data);
-        setServicios(response.data) ; 
-        
-    }).catch((error) => {
-        console.log(error);
-    });
-}
+    const getServiciosPagados = () => {
+        request(
+            "POST",
+            "/TareasP",
+            {
+                id: 1,
+                estado: "Realizado"
+            }
 
-	 
+        ).then((response) => {
+            //console.log(response.data);
+            setServicios(response.data);
+
+        }).catch((error) => {
+            console.log(error);
+        });
+
+    }
+
+   
+   
     
     //console.log(chatsServicio); 
 
@@ -148,7 +169,7 @@ const ServiciosSolicitadosC =()=>{
     return ( 
         
             <div className="row " >
-                <h3>Servicios Solicitados</h3>               
+                <h3>Servicios Pagados</h3>               
                 {servicios === ''? <div className="spinner-border text-info" role="status"></div>: null }
 
               
@@ -175,7 +196,7 @@ const ServiciosSolicitadosC =()=>{
                                             Descripcion:{servicio.descripcion}
                                             </p>
                                             <button  className="btn btn-warning" 
-                                            data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarModal(servicio)}>
+                                            data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarModal(servicio)}>
                                                 Ver Solicitud
                                             </button>
                                            
@@ -197,16 +218,16 @@ const ServiciosSolicitadosC =()=>{
                     )}  
 
 
-                    <div id='mimodal' className='modal modal-lg fade ' aria-hidden='true'>
+                    <div id='mimodal3' className='modal modal-lg fade ' aria-hidden='true'>
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">Servicio N°: {modal[7]}</h5>
-                                <button type="button" className="close"  data-bs-toggle='modal' data-bs-target='#mimodal' aria-label="Close">
+                                <button type="button" className="close"  data-bs-toggle='modal' data-bs-target='#mimodal3' aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <div className="row">
                                     <div className="col-6">
                                         <div className="row  text-start">
@@ -280,7 +301,7 @@ const ServiciosSolicitadosC =()=>{
                                         <br />
                                         <div className="row justify-content-between text-left">
                                         <div className="input-group">
-                                        <button className="input-group-text btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => guardarMensaje(modal[7],mensaje)}><FaPaperPlane className='bx bx-star ms-1' ></FaPaperPlane>   </button>
+                                        <button className="input-group-text btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => guardarMensaje(modal[7],mensaje)}><FaPaperPlane className='bx bx-star ms-1' ></FaPaperPlane>   </button>
                                         <textarea className="form-control" aria-label="With textarea" onChange={(e)=>setMensaje(e.target.value)} value={mensaje}></textarea>
                                         </div>
                                         </div>   
@@ -291,28 +312,8 @@ const ServiciosSolicitadosC =()=>{
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                {modal[2]=== "Solicitado"? 
-                                <div className="row" style={{width:"100%"}}>
-                                    <div className="col-6">
-                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => { if (window.confirm('Esta seguro que desea cancelar esta solicitud?')) cambiarEstado(modal[7],"Cancelado") } }>Cancelar Solicitud</button>
-                                    </div>
-                                    <div className="col-6">
-                                        <button type="button" className="btn btn-secondary"  data-bs-toggle='modal' data-bs-target='#mimodal'>Cerrar</button>
-                                    </div>
-                                </div>
-                                : null}
-                                {modal[2]=== "Propuesto"? 
-                                <div className="row" style={{width:"100%"}}>
-                                    <div className="col-6">
-                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => pedirMotivo(modal[7])}>Reprogramar</button>
-                                    </div>
-                                    <div className="col-6">
-                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarEstado(modal[7],"Coordinado")}>Aceptar</button>
-                                    </div>
-                                </div>
-                                : null}     
-                                
+                            <div className="modal-footer">
+
                                 
                             </div>
                             </div>
@@ -332,6 +333,6 @@ const ServiciosSolicitadosC =()=>{
 
 
     
-export default ServiciosSolicitadosC
+export default ServiciosPagadosP
 
 

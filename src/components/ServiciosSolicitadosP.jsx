@@ -1,15 +1,16 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect } from 'react';
 import { request } from '../axios_helper';
 //import Swal from 'sweetalert2';
 //import withReactContent from 'sweetalert2-react-content';
 //import { show_alert } from '../function';
 import  '../assetss/css/Inicio.css'; 
 import { FaPaperPlane } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 
 
 
-const ServiciosSolicitadosC =()=>{
+const ServiciosSolicitadosP =()=>{
 
     const [servicios, setServicios] = React.useState('');
 
@@ -80,7 +81,7 @@ const ServiciosSolicitadosC =()=>{
         });
     }
 
-    function cambiarEstado(idServicio,estado) {
+     function cambiarEstado(idServicio,estado) {
         
         request(
             "POST",
@@ -92,6 +93,7 @@ const ServiciosSolicitadosC =()=>{
            
         ).then((response) =>{
             console.log(response.data);
+            getServiciosSinConfirmar();
             //setServicios(response.data) ; 
             //window.location.reload()
         }).catch((error) => {
@@ -100,46 +102,69 @@ const ServiciosSolicitadosC =()=>{
     
     }
    
-    function pedirMotivo(idServicio) {
-        let motivo = prompt("Ingrese motivo de la reprogramación:");
-        //console.log(motivo);
-        if (motivo!=null) {
-            guardarMensaje(idServicio,motivo);
-            cambiarEstado(idServicio,"Solicitado");
-        }
-        
+
+
+    const actualizarFechasHora = (idServicio,fecha,horario) =>{
+
+        request(
+            "POST",
+            "/ActualizarFechaHora",
+            {
+               id:idServicio,
+               fecha:fecha,
+               horario:horario
+            }
+           
+        ).then((response) =>{
+            console.log(response.data);
+            getServiciosSinConfirmar();
+            Swal.fire('Servicio Finalizado', 'Se notificara al cliente el monto a pagar', 'success');
+            //setServicios(response.data) ; 
+            //window.location.reload()
+        }).catch((error) => {
+            console.log(error);
+        });
+    
+
     }
+    const pedirFechaHora = (idServicio) => {
+        let fecha = prompt("Ingresar fecha");
+        let hora = prompt("Ingresar hora");
 
+        if(fecha!= null && hora!=null){
+            actualizarFechasHora(idServicio,fecha,hora);
+            cambiarEstado(idServicio,"Propuesto");
 
-					
-								   
-		  
+        }
+
+    }
+    
+
     useEffect( ()=>{
         getServiciosSinConfirmar();
     },[]);
 
-   
-    const getServiciosSinConfirmar = () =>{
-   
-										   
-    request(
-        "POST",
-        "/TareasC",
-        {
-           id:1,
-           estado:"Solicitado"
-        }
-       
-    ).then((response) =>{
-        //console.log(response.data);
-        setServicios(response.data) ; 
-        
-    }).catch((error) => {
-        console.log(error);
-    });
-}
+     const getServiciosSinConfirmar = () => {
+        request(
+            "POST",
+            "/TareasP",
+            {
+                id: 1,
+                estado: "Solicitado"
+            }
 
-	 
+        ).then((response) => {
+            //console.log(response.data);
+            setServicios(response.data);
+
+        }).catch((error) => {
+            console.log(error);
+        });
+
+    }
+
+   
+   
     
     //console.log(chatsServicio); 
 
@@ -206,7 +231,7 @@ const ServiciosSolicitadosC =()=>{
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <div className="row">
                                     <div className="col-6">
                                         <div className="row  text-start">
@@ -291,29 +316,17 @@ const ServiciosSolicitadosC =()=>{
                                     
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div className="modal-footer">
                                 {modal[2]=== "Solicitado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
                                         <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => { if (window.confirm('Esta seguro que desea cancelar esta solicitud?')) cambiarEstado(modal[7],"Cancelado") } }>Cancelar Solicitud</button>
                                     </div>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-secondary"  data-bs-toggle='modal' data-bs-target='#mimodal'>Cerrar</button>
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => pedirFechaHora(modal[7])}>Enviar horario</button>
                                     </div>
                                 </div>
-                                : null}
-                                {modal[2]=== "Propuesto"? 
-                                <div className="row" style={{width:"100%"}}>
-                                    <div className="col-6">
-                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => pedirMotivo(modal[7])}>Reprogramar</button>
-                                    </div>
-                                    <div className="col-6">
-                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarEstado(modal[7],"Coordinado")}>Aceptar</button>
-                                    </div>
-                                </div>
-                                : null}     
-                                
-                                
+                                : null}                            
                             </div>
                             </div>
                         </div>
@@ -332,6 +345,6 @@ const ServiciosSolicitadosC =()=>{
 
 
     
-export default ServiciosSolicitadosC
+export default ServiciosSolicitadosP
 
 
