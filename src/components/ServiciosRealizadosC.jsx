@@ -99,7 +99,10 @@ const ServiciosRealizadosC =()=>{
             //setServicios(response.data) ; 
             
             traerListado();
-            window.location.reload()
+            if (estado!=="Encuestar") {
+                window.location.reload()
+            }
+            
         }).catch((error) => {
             console.log(error);
         });
@@ -108,14 +111,14 @@ const ServiciosRealizadosC =()=>{
 
     
 
-    const crearPreferencia = ()=>{
+    const crearPreferencia = (valor)=>{
 
         request(
             "POST",
             "/crearPreferencia",
             {
                description: "Servicio plomeria",
-               price:7100,
+               price:valor,
                quantity:1,
                currency_id: "ARS"
             }
@@ -133,12 +136,11 @@ const ServiciosRealizadosC =()=>{
 
     
 
-    const botonPagar =  () =>{
-        const id =  crearPreferencia();
-        if(id){
+    const botonPagar =  (valor) =>{
+        cambiarEstado(modal[7],"Encuestar");
+        const id =  crearPreferencia(valor);
+        if(id){   
             setPreferenceId(id);
-            cambiarEstado(modal[7],'Encuestar');
-
         }
     }
 
@@ -330,9 +332,17 @@ const ServiciosRealizadosC =()=>{
                                                 <label className="form-control-label px-3">{modal[0]}</label>
                                                 
                                             </div>
-                                            
-                                            
-                                            
+                                           
+
+                                        </div>
+                                        <br />
+                                        <div className="row text-start">
+                                            <div className="form-group col-sm-12 flex-column d-flex">
+                                                <label className="form-control-label px-3">Monto del Servicio:</label>
+                                                <label className="form-control-label px-3">${modal[12]}</label>
+                                                
+                                            </div>
+
                                         </div>
                                     </div>    
                                     <div className="col-6">
@@ -366,9 +376,12 @@ const ServiciosRealizadosC =()=>{
                                     </div>    
                                     
                                 </div>
-                                <hr />
+
+                                <br />
                                 {modal[2]=== "Encuestar"? 
+                                
                                 <div className="row">
+                                    <hr />
                                     <h5 className="text-start">Le pedimos su opinión del servicio brindado:</h5>
                                     <div className="col-8">
                                     <p className="text-start">Opinión:</p>
@@ -390,12 +403,11 @@ const ServiciosRealizadosC =()=>{
                             {modal[2]=== "Realizado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
-                                    <button type="button" className="btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => botonPagar() }>Pagar servicio</button>
-                                         {preferenceId && <Wallet initialization={ preferenceId } />}
                                     </div>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarEstado(modal[7],"Encuestar")}>Aceptar</button>
-                                    </div>
+                                        <button type="button" className="btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => botonPagar(modal[12]) }>Pagar servicio</button>
+                                         {preferenceId && <Wallet initialization={ preferenceId } />}
+                                   </div>
                                 </div>
                             : null}
                                 
