@@ -31,6 +31,8 @@ const ServiciosRealizadosC =()=>{
     const [rating, setRating] = React.useState(0);
 
     const [opinion, setOpinion] = React.useState('');
+ 
+    const [ocultar, setOcultar] = useState(false);
     
 
     const handleRating = (rate) => {
@@ -127,7 +129,7 @@ const ServiciosRealizadosC =()=>{
             //console.log(response.data);
             window.location.href =response.data
             
-         
+            setOcultar(true);
             
         }).catch((error) => {
             console.log(error);
@@ -142,6 +144,7 @@ const ServiciosRealizadosC =()=>{
         if(id){   
             setPreferenceId(id);
         }
+        
     }
 
     function cambiarModal(servicio) { 

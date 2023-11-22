@@ -161,7 +161,7 @@ const ProfesionalCreado =()=>{
             <div className="container-fluid" >
             
                 <div className="row mt-3">
-                <Salir/>
+               
                 <div className='col-12 col-lg-8 offset-0 offset-lg-2'>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Id: {profesional[0]}</li>
