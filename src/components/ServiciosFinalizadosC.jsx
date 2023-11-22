@@ -115,7 +115,7 @@ const ServiciosFinalizadoC =()=>{
         const pdfUrl = "/";
         const link = document.createElement("a");
         link.href = pdfUrl;
-        link.setAttribute("download","factura.jpg"); // specify the filename
+        link.setAttribute("download","factura.pdf"); // specify the filename
         
         document.body.appendChild(link);
         link.click();

@@ -179,14 +179,14 @@ const Component = () =>{
                 <div className="container fadeIn border">
                         <div className="row"  >
                                 <div className='col-1'></div>
-                                <div className="col-2 border">
+                                <div className="col-3 border">
                                     
                         
-                                <div className="form-floating mb-3">
+                                <div className="form-floating mb-3 ms-2 text-start">
                                 <input type="text" className="form-control text-start" id="floatingNombre" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" onChange={(e)=>setQueryNombre(e.target.value)}></input>
-                                <label htmlFor="floatingNombre">Nombre</label>
+                                <label htmlFor="floatingNombre ">Nombre</label>
                                 </div>
-                                <div className="form-floating mb-3">
+                                <div className="form-floating mb-3 ms-2 text-start">
                                 <input type="text" className="form-control text-start" id="floatingUbicacion" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="basic-addon1" onChange={(e)=>setQueryUbicacion(e.target.value)}></input>
                                 <label htmlFor="floatingUbicacion">Ubicacion</label>
                                 </div>
@@ -198,7 +198,7 @@ const Component = () =>{
 
 
                                 </div>
-                                <div className="col-8 border">
+                                <div className="col-7 border">
                                 
                                 {profesional === ''? <div className="spinner-border text-info" role="status"></div>: null }
 

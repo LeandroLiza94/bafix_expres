@@ -27,10 +27,10 @@ const ProfesionalCreado =()=>{
 
     const getProfesional = () => {
         let idPro = getIdProfesional();
-        if ( idPro !== null) {
+        if ( idPro === null) {
             request(
                 "GET",
-                "/Profesionales/" + idPro,
+                "/Profesionales/" + "1",
                 {}
             ).then((response) => {
                 let resArray = Object.values(response.data);
