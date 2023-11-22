@@ -1,7 +1,7 @@
 import React from 'react';
 //import { setIdProfesional } from '../axios_helper';
 //import {  Navigate } from 'react-router-dom';
-import  {useEffect} from 'react';
+import  {useEffect, useState} from 'react';
 //import Salir from './Salir';
 //import Navegador from './Navegador';
 import { request } from '../axios_helper';
@@ -11,9 +11,12 @@ import { request } from '../axios_helper';
 import { FaPaperPlane,FaInfoCircle } from "react-icons/fa";
 //import { FaStar } from "react-icons/fa";
 import { Rating } from 'react-simple-star-rating'
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 const ServiciosRealizadosC =()=>{
 
+    const [preferenceId, setPreferenceId] = useState(null);
+    initMercadoPago('TEST-63575a0c-acc3-45e5-882a-676f7b43c9e5');
 
     const [servicios, setServicios] = React.useState('');
 
@@ -101,6 +104,42 @@ const ServiciosRealizadosC =()=>{
             console.log(error);
         });
     
+    }
+
+    
+
+    const crearPreferencia = ()=>{
+
+        request(
+            "POST",
+            "/crearPreferencia",
+            {
+               description: "Servicio plomeria",
+               price:7100,
+               quantity:1,
+               currency_id: "ARS"
+            }
+           
+        ).then((response) =>{
+            //console.log(response.data);
+            window.location.href =response.data
+            
+         
+            
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    
+
+    const botonPagar =  () =>{
+        const id =  crearPreferencia();
+        if(id){
+            setPreferenceId(id);
+            cambiarEstado(modal[7],'Encuestar');
+
+        }
     }
 
     function cambiarModal(servicio) { 
@@ -328,42 +367,6 @@ const ServiciosRealizadosC =()=>{
                                     
                                 </div>
                                 <hr />
-                                {modal[2]=== "Realizado"?   
-                                <div class="card px-4 text-start">
-                                <p class="h8 py-3">Detalle Pago:</p>
-                                <div class="row gx-3">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-column">
-                                            <p class="text mb-1">Nombre del titular de la tarjeta:</p>
-                                            <input class="form-control mb-3" type="text" placeholder="Nombre" />
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-flex flex-column">
-                                            <p class="text mb-1">N° de tarjeta:</p>
-                                            <input class="form-control mb-3" type="text" placeholder="1234 5678 435678"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="d-flex flex-column">
-                                            <p class="text mb-1">Vencimiento:</p>
-                                            <input class="form-control mb-3" type="text" placeholder="MM/YYYY"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="d-flex flex-column">
-                                            <p class="text mb-1">CVV/CVC:</p>
-                                            <input class="form-control mb-3 pt-2 " type="password" placeholder="***"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-flex flex-column">
-                                            <p class="text mb-1">Monto a abonar: ${modal[12]}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            : null}
                                 {modal[2]=== "Encuestar"? 
                                 <div className="row">
                                     <h5 className="text-start">Le pedimos su opinión del servicio brindado:</h5>
@@ -387,7 +390,8 @@ const ServiciosRealizadosC =()=>{
                             {modal[2]=== "Realizado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
-                                        
+                                    <button type="button" className="btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => botonPagar() }>Pagar servicio</button>
+                                         {preferenceId && <Wallet initialization={ preferenceId } />}
                                     </div>
                                     <div className="col-6">
                                         <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarEstado(modal[7],"Encuestar")}>Aceptar</button>

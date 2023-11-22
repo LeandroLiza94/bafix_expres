@@ -19,6 +19,7 @@ const ProfesionalCreado =()=>{
     const [ubicacion,setUbicacion]= useState('');
     const [operacion,setOperacion]= useState(1);
     const [titulo,setTitulo]= useState('');
+    const [profesion, setProfesion] = useState('');
 
     useEffect( ()=>{
         getProfesional();
@@ -27,23 +28,24 @@ const ProfesionalCreado =()=>{
 
     const getProfesional = () => {
         let idPro = getIdProfesional();
-        if ( idPro !== null) {
+        if ( idPro == null) {
             request(
                 "GET",
-                "/Profesionales/" + idPro,
+                "/Profesionales/1" ,
                 {}
             ).then((response) => {
                 let resArray = Object.values(response.data);
                 setProfesional(resArray)
                 setId(resArray[0]);
-                setNombre(resArray[1]);
-                setApellido(resArray[2]);
-                setDni(resArray[3]);
-                setExperiencia(resArray[4]);
-                setFoto(resArray[5]);
-                setMail(resArray[6]);
+                setNombre(resArray[6]);
+                setApellido(resArray[1]);
+                setDni(resArray[2]);
+                setExperiencia(resArray[3]);
+                setFoto(resArray[4]);
+                setMail(resArray[5]);
                 setTelefono(resArray[7]);
                 setUbicacion(resArray[8]);
+                setProfesion(resArray[9]);
 
             })
         } else {
@@ -163,14 +165,16 @@ const ProfesionalCreado =()=>{
                 <div className='col-12 col-lg-8 offset-0 offset-lg-2'>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Id: {profesional[0]}</li>
-                        <li className="list-group-item">Nombre: {profesional[1]}</li>
-                        <li className="list-group-item">Apellido: {profesional[2]}</li>
-                        <li className="list-group-item">Mail: {profesional[3]}</li>
-                        <li className="list-group-item">Foto:{profesional[4]}</li>
+                        <li className="list-group-item">Nombre: {profesional[2]}</li>
+                        <li className="list-group-item">Apellido: {profesional[3]}</li>
+                        <li className="list-group-item">Mail: {profesional[4]}</li>
+                        <li className="list-group-item">Foto:{profesional[6]}</li>
                         <li className="list-group-item">Telefono: {profesional[5]}</li>
-                        <li className="list-group-item">Experiencia: {profesional[6]}</li>
-                        <li className="list-group-item">Dni: {profesional[7]}</li>
+                        <li className="list-group-item">Experiencia: {profesional[7]}</li>
+                        <li className="list-group-item">Dni: {profesional[1]}</li>
                         <li className="list-group-item">Ubicacion: {profesional[8]}</li>
+                        <li className="list-group-item">Profesion: {profesional[9]}</li>
+                        
                         <button onClick={() => openModal(2, id, nombre, apellido, dni, experiencia, foto, mail, telefono, ubicacion)} className="btn btn-warning" 
                         data-bs-toggle='modal' data-bs-target='#modalProducts'>
                             <i className="fa-solid fa-edit"></i>Editar datos

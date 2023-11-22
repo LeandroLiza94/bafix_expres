@@ -1,17 +1,19 @@
 import React from 'react';
 //import { setIdProfesional } from '../axios_helper';
 //import {  Navigate } from 'react-router-dom';
-import  {useEffect} from 'react';
+import  {useEffect } from 'react';
 //import Salir from './Salir';
 //import Navegador from './Navegador';
 import { request } from '../axios_helper';
 //import Swal from 'sweetalert2';
 //import withReactContent from 'sweetalert2-react-content';
 //import { show_alert } from '../function';
+
 import { FaPaperPlane,FaInfoCircle } from "react-icons/fa";
 
 
 const ServiciosFinalizadoC =()=>{
+
 
 
     const [servicios, setServicios] = React.useState('');
@@ -48,6 +50,8 @@ const ServiciosFinalizadoC =()=>{
         });
 
     }
+
+
 
     function cambiarModal(servicio) { 
         let array=[];
