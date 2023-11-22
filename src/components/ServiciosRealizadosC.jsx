@@ -117,6 +117,7 @@ const ServiciosRealizadosC =()=>{
         array.push(servicio.telefono); 
         array.push(servicio.nombreCli); 
         array.push(servicio.nombrePro); 
+        array.push(servicio.precio); 
         //console.log(servicio);
         setModal(array); 
 
@@ -327,12 +328,48 @@ const ServiciosRealizadosC =()=>{
                                     
                                 </div>
                                 <hr />
+                                {modal[2]=== "Realizado"?   
+                                <div class="card px-4 text-start">
+                                <p class="h8 py-3">Detalle Pago:</p>
+                                <div class="row gx-3">
+                                    <div class="col-12">
+                                        <div class="d-flex flex-column">
+                                            <p class="text mb-1">Nombre del titular de la tarjeta:</p>
+                                            <input class="form-control mb-3" type="text" placeholder="Nombre" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex flex-column">
+                                            <p class="text mb-1">N° de tarjeta:</p>
+                                            <input class="form-control mb-3" type="text" placeholder="1234 5678 435678"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex flex-column">
+                                            <p class="text mb-1">Vencimiento:</p>
+                                            <input class="form-control mb-3" type="text" placeholder="MM/YYYY"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex flex-column">
+                                            <p class="text mb-1">CVV/CVC:</p>
+                                            <input class="form-control mb-3 pt-2 " type="password" placeholder="***"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex flex-column">
+                                            <p class="text mb-1">Monto a abonar: ${modal[12]}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            : null}
                                 {modal[2]=== "Encuestar"? 
                                 <div className="row">
                                     <h5 className="text-start">Le pedimos su opinión del servicio brindado:</h5>
                                     <div className="col-8">
                                     <p className="text-start">Opinión:</p>
-                                    <textarea className="form-control" aria-label="With textarea" onChange={(e)=>setOpinion(e.target.value)} value={opinion}></textarea>
+                                    <textarea className="form-control" aria-label="With textarea" onChange={(e)=>setOpinion(e.target.value)} value={opinion} ></textarea>
                                         
                                     </div>
 
@@ -346,7 +383,19 @@ const ServiciosRealizadosC =()=>{
                                 
                             </div>
                             <div className="modal-footer">
+
+                            {modal[2]=== "Realizado"? 
+                                <div className="row" style={{width:"100%"}}>
+                                    <div className="col-6">
+                                        
+                                    </div>
+                                    <div className="col-6">
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarEstado(modal[7],"Encuestar")}>Aceptar</button>
+                                    </div>
+                                </div>
+                            : null}
                                 
+                            {modal[2]=== "Encuestar"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
                                         
@@ -355,7 +404,7 @@ const ServiciosRealizadosC =()=>{
                                         <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => guardarEncuesta(modal[7],modal[6],modal[5])}>Aceptar</button>
                                     </div>
                                 </div>
-                                
+                            : null}
                             
                                 
                             </div>

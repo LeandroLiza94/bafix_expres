@@ -30,7 +30,7 @@ const ServicioEnProcesoP =()=>{
             "/GuardarMensaje",
             {
                 idServicio:idServicio,
-                tipo:"cliente",
+                tipo:"profesional",
                 mensaje:mensaje,
                 fecha:"20231101"
             }
@@ -289,7 +289,7 @@ const ServicioEnProcesoP =()=>{
                                             {michat && michat.map(chat =>
                                                 
                                                 
-                                                <span>{chat.tipo=== "cliente"? <li className="list-group-item list-group-item-primary text-end">{chat.mensaje}</li>: <li className="list-group-item list-group-item-info text-start">{chat.mensaje}</li>}   </span>
+                                                <span>{chat.tipo=== "profesional"? <li className="list-group-item list-group-item-primary text-end">{chat.mensaje}</li>: <li className="list-group-item list-group-item-info text-start">{chat.mensaje}</li>}   </span>
                                             
                                             )}
                                                 
@@ -317,11 +317,11 @@ const ServicioEnProcesoP =()=>{
                             {modal[2]=== "Coordinado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => cambiarEstado(modal[7],'en progreso') }>Aceptar servicio</button>
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => cambiarEstado(modal[7],'En Progreso') }>Aceptar servicio</button>
                                     </div>
                                 </div>
                                 : null}
-                                {modal[2]=== "en progreso"? 
+                                {modal[2]=== "En Progreso"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
                                         <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => ingresarPrecio(modal[7]) }>Servicio realizado</button>

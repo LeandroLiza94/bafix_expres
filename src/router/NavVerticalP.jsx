@@ -1,13 +1,10 @@
 import * as React from 'react';
 import Navegador from '../components/Navegador';
 import Profesional from '../components/Profesional';
-import { request } from '../axios_helper';
-import  ServiciosSolicitadosP, {getServiciosSinConfirmar}  from '../components/ServiciosSolicitadosP';
+//import { request } from '../axios_helper';
+import  ServiciosSolicitadosP  from '../components/ServiciosSolicitadosP';
 import  ServicioEnProcesoP  from '../components/ServicioEnProcesoP';
 import  ServiciosPagadosP  from '../components/ServiciosPagadosP';
-import Solicitados from '../components/ServiciosSolicitadosC';
-import Proceso from '../components/ServiciosProcesoC';
-import Finalizado from '../components/ServiciosFinalizadosC';
 
 
 

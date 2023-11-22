@@ -6,6 +6,7 @@ import { request} from '../axios_helper';
 import  '../assetss/css/Inicio.css';
 import { useParams  } from 'react-router-dom'
 import { Link  } from 'react-router-dom';
+import { useEffect } from 'react';
 
 class ProfesionalDet extends React.Component{
 
@@ -61,6 +62,16 @@ const Component = () =>{
 
     const style = {  fontSize: "0.5em" }
     const style2 = { textAlign: 'left'}
+
+    useEffect(()=>{
+
+        if (profesional==='') {
+           traerDatos();
+       }
+       
+   }, [profesional])
+    
+   function traerDatos() {
     request(
         "POST",
         "/Profesional",
@@ -102,6 +113,8 @@ const Component = () =>{
     }).catch((error) => {
         console.log(error);
     });
+   }
+    
 
     return (
         <React.Fragment>
@@ -112,7 +125,7 @@ const Component = () =>{
             <div className="row">
                 <div className="col-md-3 border-right border">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img className="rounded-circle mt-5" width="150px" src={profesional.foto} alt="Perfil"></img>
+                        <img className="rounded-circle mt-5" width="200px" src={profesional.foto} alt="Perfil"></img>
                         <div className="col-md-12">
                             <div className="ratings"> 
                             
@@ -172,25 +185,34 @@ const Component = () =>{
                             <h4 className="text-right">Descripción Profesional</h4>
                         </div>
                         <div className="row mt-2">
-                            <div className="col-md-12">
-                                <label className="labels">Nombre y Apellido</label>
+                            <div className="col-md-6 text-start">
+                                <h5 >Nombre y Apellido:</h5>
                                 <p>{profesional.nombre} {profesional.apellido}</p>
                             </div>
-                        </div>
-                        <div className="row mt-3">
-                            <div className="col-md-12">
-                                <label className="labels">Profesión</label>
+                            <div className="col-md-6 text-start">
+                                <h5 >Profesión:</h5>
                                 <p>{profesional.profesion}</p>
                             </div>
-                            <div className="col-md-12">
-                                <label className="labels">Ubicacion</label>
+                        </div>
+                        <br />
+                        <div className="row mt-2 text-start">
+                            <div className="col-md-6">
+                                <h5 >Ubicación:</h5>
                                 <p>{profesional.ubicacion}</p>
                             </div>
-                            <div className="col-md-12"><label className="labels">Experiencia</label>
+                            <div className="col-md-6 text-start">
+                                <h5 >E-mail:</h5>
+                                <p>{profesional.mail}</p>
+                            </div>
+                        </div>
+                        <br />
+                        <div className="row mt-3">
+                            
+                            <div className="col-md-12 text-start">
+                                <h5 >Experiencia:</h5>
                                 <p>{profesional.experiencia}</p>
                             </div>
                             
-                           
                         </div>
                         
                         
@@ -199,7 +221,7 @@ const Component = () =>{
                 <div className="col-md-4 border">
                     <div className="p-3 py-5">
                         <div className="d-flex justify-content-between align-items-center experience">
-                            <span>Opiniones</span>
+                            <h4>Opiniones</h4>
                             
                         </div>
                         
@@ -291,7 +313,7 @@ const Component = () =>{
                                             
                                             </div>
                                             
-                                            <p className="card-text ">
+                                            <p >
                                             {encuesta.comentario}
                                             </p>
                                             

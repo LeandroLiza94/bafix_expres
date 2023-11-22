@@ -8,6 +8,7 @@ import { useParams  } from 'react-router-dom'
 import { Link,useNavigate  } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { Rating } from 'react-simple-star-rating'
+import { useEffect } from 'react';
 
 class Buscar extends React.Component{
 
@@ -85,8 +86,16 @@ const Component = () =>{
       navigate(path);
     }
 
+    useEffect(()=>{
+
+        if (profesional==='') {
+           traerListado();
+       }
+       
+   }, [profesional])
     
-    request(
+    function traerListado() {
+        request(
         "GET",
         "/Profesionales",
         {
@@ -99,6 +108,8 @@ const Component = () =>{
     }).catch((error) => {
         console.log(error);
     });
+    }
+    
 
     /*request(
         "POST",

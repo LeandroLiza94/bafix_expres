@@ -169,7 +169,7 @@ const ServiciosSolicitadosC =()=>{
                                                 <div className="col-8">
                                                     <div className="row">
                                                         <div className="col-6">
-                                                        <label className="form-control-label px-3">Fecha: {servicio.fecha}</label> 
+                                                        <label className="form-control-label px-3">N°: {servicio.idServicio}</label> 
                                                         </div> 
                                                         <div className="col-6">
                                                         <label className="form-control-label px-3">Estado: {servicio.estado}</label> 
@@ -256,10 +256,12 @@ const ServiciosSolicitadosC =()=>{
                                         </div>
                                         <br />
                                         <div className="row  text-start">
+                                             {modal[2]=== "Propuesto"? 
                                             <div className="form-group col-sm-6 flex-column d-flex">
                                                 <label className="form-control-label px-3">Fecha:</label>
                                                 <label className="form-control-label px-3">{modal[3]}</label>
                                                 </div>
+                                                :null}
                                             <div className="form-group col-sm-6 flex-column d-flex"> 
                                             <label className="form-control-label px-3">Horario:</label> 
                                             <label className="form-control-label px-3">{modal[4]}</label>

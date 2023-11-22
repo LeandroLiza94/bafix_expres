@@ -30,7 +30,7 @@ const ServiciosSolicitadosP =()=>{
             "/GuardarMensaje",
             {
                 idServicio:idServicio,
-                tipo:"cliente",
+                tipo:"profesional",
                 mensaje:mensaje,
                 fecha:"20231101"
             }
@@ -292,7 +292,7 @@ const ServiciosSolicitadosP =()=>{
                                             {michat && michat.map(chat =>
                                                 
                                                 
-                                                <span>{chat.tipo=== "cliente"? <li className="list-group-item list-group-item-primary text-end">{chat.mensaje}</li>: <li className="list-group-item list-group-item-info text-start">{chat.mensaje}</li>}   </span>
+                                                <span>{chat.tipo=== "profesional"? <li className="list-group-item list-group-item-primary text-end">{chat.mensaje}</li>: <li className="list-group-item list-group-item-info text-start">{chat.mensaje}</li>}   </span>
                                             
                                             )}
                                                 
