@@ -283,8 +283,8 @@ const ServiciosSolicitadosP =()=>{
                                         <br />
                                         <div className="row  text-start">
                                             <div className="form-group col-sm-6 flex-column d-flex">
-                                                <label className="form-control-label px-3">Fecha:</label>
-                                                <label className="form-control-label px-3">{modal[3]}</label>
+                                                <label className="form-control-label px-3">N° Servicio:</label>
+                                                <label className="form-control-label px-3">{modal[7]}</label>
                                                 </div>
                                             <div className="form-group col-sm-6 flex-column d-flex"> 
                                             <label className="form-control-label px-3">Horario:</label> 
@@ -343,7 +343,7 @@ const ServiciosSolicitadosP =()=>{
                                 {modal[2]=== "Solicitado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => { if (window.confirm('Esta seguro que desea cancelar esta solicitud?')) cambiarEstado(modal[7],"Cancelado") } }>Cancelar Solicitud</button>
+                                        <button type="button" className="btn btn-danger" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => { if (window.confirm('Esta seguro que desea cancelar esta solicitud?')) cambiarEstado(modal[7],"Cancelado") } }>Rechazar Solicitud</button>
                                     </div>
                                     <div className="col-6">
                                         <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => pedirFechaHora(modal[7])}>Enviar horario</button>

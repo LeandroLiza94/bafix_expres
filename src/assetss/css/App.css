@@ -2,6 +2,7 @@
 .App {
   text-align: center;
   border: none;
+  background-color: white;
 }
 
 .App-logo {
@@ -70,5 +71,10 @@ body {
 
   p {
     margin: 0; /* Elimina el margen predeterminado de los párrafos */
+  }
+
+
+  .parrafo {
+    font-size: 18px; /* Elimina el margen predeterminado de los párrafos */
   }
   

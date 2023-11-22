@@ -225,14 +225,15 @@ const Component = () =>{
                             
                         </div>
                         
-                        <div className="row" key="">
+                        <ul className="list-group" style={{overflowY:"scroll",height: "350px"}}>
                             {encuestas && encuestas.map(encuesta =>             
                             
-                            <div className="card m-2"  >
+                            <li className="list-group-item list-group-item">
+                            <div className="card "  >
                                 
                                 <div className="row g-0">
                                     
-                                    <div className="col-8">
+                                    <div className="col-12">
 
                                     
                                         
@@ -313,19 +314,23 @@ const Component = () =>{
                                             
                                             </div>
                                             
-                                            <p >
-                                            {encuesta.comentario}
-                                            </p>
+                                            
                                             
                                            
                                         </div>
-                                        
+                                        <div className="col-12 ">
+                                        <p >
+                                            {encuesta.comentario}
+                                            </p>
+                                        </div>
                                        
                                     </div>
                                 </div>
                             </div>
-                               )}              
-                            </div>
+                            </li>
+                               )}
+                            </ul>                
+                           
                     </div>
                 </div>
             </div>

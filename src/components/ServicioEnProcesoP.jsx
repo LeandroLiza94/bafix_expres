@@ -151,7 +151,7 @@ const ServicioEnProcesoP =()=>{
             }
 
         ).then((response) => {
-            //console.log(response.data);
+            console.log(response.data);
             setServicios(response.data);
 
         }).catch((error) => {
@@ -340,7 +340,7 @@ const ServicioEnProcesoP =()=>{
                             {modal[2]=== "Coordinado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => cambiarEstado(modal[7],'En Progreso') }>Aceptar servicio</button>
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => cambiarEstado(modal[7],'En Progreso') }>Comenzar servicio</button>
                                     </div>
                                 </div>
                                 : null}
