@@ -31,6 +31,8 @@ const ServiciosRealizadosC =()=>{
     const [rating, setRating] = React.useState(0);
 
     const [opinion, setOpinion] = React.useState('');
+ 
+    const [ocultar, setOcultar] = useState(false);
     
 
     const handleRating = (rate) => {
@@ -124,7 +126,7 @@ const ServiciosRealizadosC =()=>{
             //console.log(response.data);
             window.location.href =response.data
             
-         
+            setOcultar(true);
             
         }).catch((error) => {
             console.log(error);
@@ -137,9 +139,10 @@ const ServiciosRealizadosC =()=>{
         const id =  crearPreferencia();
         if(id){
             setPreferenceId(id);
-            cambiarEstado(modal[7],'Encuestar');
+            
 
         }
+        
     }
 
     function cambiarModal(servicio) { 
@@ -390,11 +393,11 @@ const ServiciosRealizadosC =()=>{
                             {modal[2]=== "Realizado"? 
                                 <div className="row" style={{width:"100%"}}>
                                     <div className="col-6">
-                                    <button type="button" className="btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => botonPagar() }>Pagar servicio</button>
+                                    <button type="button" className="btn btn-success" data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() =>botonPagar()}>Pagar servicio</button>
                                          {preferenceId && <Wallet initialization={ preferenceId } />}
                                     </div>
                                     <div className="col-6">
-                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarEstado(modal[7],"Encuestar")}>Aceptar</button>
+                                        <button type="button" className="btn btn-success"  data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarEstado(modal[7],"Encuestar")}>Finalizar</button>
                                     </div>
                                 </div>
                             : null}

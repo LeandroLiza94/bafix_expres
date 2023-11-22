@@ -4,7 +4,7 @@ import { request } from '../axios_helper';
 //import withReactContent from 'sweetalert2-react-content';
 //import { show_alert } from '../function';
 import  '../assetss/css/Inicio.css'; 
-import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane,FaInfoCircle } from "react-icons/fa";
 import Swal from 'sweetalert2';
 
 
@@ -175,31 +175,54 @@ const ServicioEnProcesoP =()=>{
 
               
                 
-                    {servicios && servicios.map(servicio =>
+                {servicios && servicios.map(servicio =>
                         
-                        <div>
+                        <div key={servicio.idServicio}>
                             <div className="card "  >
                                 
                                 <div className="row g-0">
                                     
-                                    <div className="col-8">
+                                    <div className="col-12">
 
                                     
                                         
                                         <div className="card-body">
-                                            <p className="card-text">
-                                            Horario:{servicio.horario} Fecha:{servicio.fecha}
-                                            </p>
-                                            <p className="card-text">
-                                            Estado:{servicio.estado} Direccion:{servicio.direccion}
-                                            </p>
-                                            <p className="card-text">
-                                            Descripcion:{servicio.descripcion}
-                                            </p>
-                                            <button  className="btn btn-warning" 
-                                            data-bs-toggle='modal' data-bs-target='#mimodal2' onClick={() => cambiarModal(servicio)}>
-                                                Ver Solicitud
-                                            </button>
+
+                                        <div className="row">
+                                                <div className="col-8">
+                                                    <div className="row">
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Fecha: {servicio.fecha}</label> 
+                                                        </div> 
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Estado: {servicio.estado}</label> 
+                                                        </div> 
+
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Cliente: {servicio.horario}</label> 
+                                                        </div> 
+                                                        <div className="col-6">
+                                                        <label className="form-control-label px-3">Direccion: {servicio.direccion}</label> 
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                                  
+                                                <div className="col-4">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                        <button  className="btn btn-warning" 
+                                                            data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarModal(servicio)}>
+                                                                <FaInfoCircle className='bx bx-star ms-1' ></FaInfoCircle> Ver Solicitud
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
                                            
                                         </div>
                                         
