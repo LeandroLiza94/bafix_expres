@@ -118,7 +118,7 @@ const ServiciosSolicitadosP =()=>{
         ).then((response) =>{
             console.log(response.data);
             getServiciosSinConfirmar();
-            Swal.fire('Servicio Finalizado', 'Se notificara al cliente el monto a pagar', 'success');
+            //Swal.fire('Servicio Finalizado', 'Se notificara al cliente el monto a pagar', 'success');
             //setServicios(response.data) ; 
             //window.location.reload()
         }).catch((error) => {
@@ -195,7 +195,7 @@ const ServiciosSolicitadosP =()=>{
                                                 <div className="col-8">
                                                     <div className="row">
                                                         <div className="col-6">
-                                                        <label className="form-control-label px-3">Fecha: {servicio.fecha}</label> 
+                                                        <label className="form-control-label px-3">N° Servicio: {servicio.idServicio}</label> 
                                                         </div> 
                                                         <div className="col-6">
                                                         <label className="form-control-label px-3">Estado: {servicio.estado}</label> 
@@ -204,7 +204,7 @@ const ServiciosSolicitadosP =()=>{
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-6">
-                                                        <label className="form-control-label px-3">Cliente: {servicio.horario}</label> 
+                                                        <label className="form-control-label px-3">Horario: {servicio.horario}</label> 
                                                         </div> 
                                                         <div className="col-6">
                                                         <label className="form-control-label px-3">Direccion: {servicio.direccion}</label> 
@@ -217,7 +217,7 @@ const ServiciosSolicitadosP =()=>{
                                                     <div className="row">
                                                         <div className="col-12">
                                                         <button  className="btn btn-warning" 
-                                                            data-bs-toggle='modal' data-bs-target='#mimodal3' onClick={() => cambiarModal(servicio)}>
+                                                            data-bs-toggle='modal' data-bs-target='#mimodal' onClick={() => cambiarModal(servicio)}>
                                                                 <FaInfoCircle className='bx bx-star ms-1' ></FaInfoCircle> Ver Solicitud
                                                             </button>
                                                         </div>

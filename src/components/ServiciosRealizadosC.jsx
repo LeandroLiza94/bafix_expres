@@ -232,7 +232,7 @@ const ServiciosRealizadosC =()=>{
                                                 <div className="col-8">
                                                     <div className="row">
                                                         <div className="col-6">
-                                                        <label className="form-control-label px-3">Fecha: {servicio.fecha}</label> 
+                                                        <label className="form-control-label px-3">N° Servicio: {servicio.idServicio}</label> 
                                                         </div> 
                                                         <div className="col-6">
                                                         <label className="form-control-label px-3">Estado: {servicio.estado}</label> 
@@ -241,7 +241,7 @@ const ServiciosRealizadosC =()=>{
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-6">
-                                                        <label className="form-control-label px-3">Cliente: {servicio.horario}</label> 
+                                                        <label className="form-control-label px-3">Horario: {servicio.horario}</label> 
                                                         </div> 
                                                         <div className="col-6">
                                                         <label className="form-control-label px-3">Direccion: {servicio.direccion}</label> 
